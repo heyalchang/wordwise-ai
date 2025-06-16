@@ -2763,7 +2763,590 @@ No results found
 
 ---
 
+<details>
+            <summary>Listed directory src • **13** results</summary>
+        
+| Name |
+|-------|
+| 📁 `store` |
+| 📁 `editor` |
+| 📁 `hooks` |
+| 📁 `pages` |
+| 📄 `App.tsx` |
+| 📁 `lib` |
+| 📁 `contexts` |
+| 📁 `components` |
+| 📄 `main.tsx` |
+| 📄 `index.css` |
+| 📁 `assets` |
+| 📄 `vite-env.d.ts` |
+| 📄 `App.css` |
 
+</details>
+
+---
+
+<details>
+            <summary>Searched codebase "Surprises" • **1** results</summary>
+        
+| File |
+|------|
+| `undefined` |
+
+</details>
+
+---
+
+
+
+---
+
+Model provided invalid arguments to read file tool.
+
+---
+
+<details>
+            <summary>Searched codebase "functions.edit_file" • **0** results</summary>
+        
+No results found
+</details>
+
+---
+
+<details>
+            <summary>Searched codebase "CURSOR_COMMENTS.md" • **1** results</summary>
+        
+| File |
+|------|
+| `undefined` |
+
+</details>
+
+---
+
+Model provided invalid arguments to read file tool.
+
+---
+
+<details>
+            <summary>Searched codebase "edit" • **3** results</summary>
+        
+| File |
+|------|
+| `undefined` |
+| `undefined` |
+| `undefined` |
+
+</details>
+
+---
+
+
+
+---
+
+Create / update `.cursorrules` at repo-root:
+
+```0:0:.cursorrules
+# Cursor Rules – WordWise AI
+# Shared guard-rails for every developer.
+
+## 🔒 Machine-managed / DO-NOT-EDIT
+CLAUDE.md
+CONVERSATION.md
+CURSOR_COMMENTS.md
+SURPRISES.md
+docs/Day-*-Complete.md      # auto-generated daily summaries
+
+## 📝 Developer scratch space
+SUPRISES-CURSOR.md          # human-authored surprises / discoveries
+
+## 🛠 Coding conventions
+- TypeScript strict mode; run `npm run typecheck` before push.
+- Lint & format (`npm run lint`) must pass.
+- React = functional components + hooks only.
+- Styling via Tailwind; no inline styles / CSS-modules.
+- Global state via Zustand; prefer local state otherwise.
+
+## 🚀 Workflow
+- Small, descriptive commits; push only when `lint`, `typecheck`, `build` all succeed.
+- CI (`.github/workflows/ci.yml`) must stay green; never force-push `main`.
+- Vercel deploys automatically from `main`.
+
+## 🌐 Edge functions
+Source in `supabase/functions/<name>.ts`; deploy with `supabase functions deploy <name>` and commit manifest.
+
+## 🔑 Required env vars
+VITE_SUPABASE_URL  
+VITE_SUPABASE_ANON_KEY  
+LANGUAGETOOL_API_URL  
+OPENAI_API_KEY  # Phase 2
+```
+
+If `SUPRISES-CURSOR.md` doesn’t exist yet, add an empty placeholder:
+
+```0:0:SUPRISES-CURSOR.md
+# Team Surprise Log (developer-authored)
+_Add any unexpected issues, quirks, or discoveries here. Claude will **not** modify this file._
+```
+
+Commit both files so the whole team inherits the updated rules.
+
+---
+
+_**User**_
+
+catch up on the latest changes.
+
+---
+
+_**Assistant**_
+
+
+
+---
+
+<details>
+            <summary>Listed directory src/lib • **1** results</summary>
+        
+| Name |
+|-------|
+| 📄 `supabase.ts` |
+
+</details>
+
+---
+
+Read file: src/lib/supabase.ts
+
+---
+
+
+
+---
+
+<details>
+            <summary>Listed directory src/hooks • **2** results</summary>
+        
+| Name |
+|-------|
+| 📄 `useDebounce.ts` |
+| 📄 `useGrammarCheck.ts` |
+
+</details>
+
+---
+
+Read file: src/hooks/useGrammarCheck.ts
+
+---
+
+
+
+---
+
+Read file: src/hooks/useDebounce.ts
+
+---
+
+
+
+---
+
+<details>
+            <summary>Listed directory supabase/functions • **1** results</summary>
+        
+| Name |
+|-------|
+| 📁 `grammar_check` |
+
+</details>
+
+---
+
+<details>
+            <summary>Listed directory supabase/functions/grammar_check • **1** results</summary>
+        
+| Name |
+|-------|
+| 📄 `index.ts` |
+
+</details>
+
+---
+
+Read file: supabase/functions/grammar_check/index.ts
+
+---
+
+
+
+---
+
+<details>
+            <summary>Listed directory supabase/functions • **1** results</summary>
+        
+| Name |
+|-------|
+| 📁 `grammar_check` |
+
+</details>
+
+---
+
+
+
+---
+
+<details>
+            <summary>Listed directory src/components • **1** results</summary>
+        
+| Name |
+|-------|
+| 📄 `SuggestionPopover.tsx` |
+
+</details>
+
+---
+
+Read file: src/components/SuggestionPopover.tsx
+
+---
+
+
+
+---
+
+Read file: src/editor/Editor.tsx
+
+---
+
+
+
+---
+
+Read file: CURSOR_COMMENTS.md
+
+---
+
+<details>
+            <summary>Searched codebase "CURSOR_COMMENTS.md" • **1** results</summary>
+        
+| File |
+|------|
+| `undefined` |
+
+</details>
+
+---
+
+Model provided invalid arguments to read file tool.
+
+---
+
+<details>
+            <summary>Searched codebase "edit_file" • **0** results</summary>
+        
+No results found
+</details>
+
+---
+
+
+
+---
+
+Model provided invalid arguments to read file tool.
+
+---
+
+<details>
+            <summary>Searched codebase ".claude" • **1** results</summary>
+        
+| File |
+|------|
+| `undefined` |
+
+</details>
+
+---
+
+
+
+---
+
+Read file: CURSOR_COMMENTS.md
+
+---
+
+
+
+---
+
+<details>
+            <summary>Listed current directory • **31** results</summary>
+        
+| Name |
+|-------|
+| 📁 `.specstory` |
+| 📁 `.git` |
+| 📁 `docs` |
+| 📁 `node_modules` |
+| 📁 `dist` |
+| 📄 `package-lock.json` |
+| 📄 `package.json` |
+| 📄 `postcss.config.js` |
+| 📁 `src` |
+| 📁 `.claude` |
+| 📁 `supabase` |
+| 📄 `CURSOR_COMMENTS.md` |
+| 📄 `CLAUDE.md` |
+| 📄 `SUPRISES-CURSOR.md` |
+| 📄 `.cursorrules` |
+| 📄 `i.md` |
+| 📁 `.github` |
+| 📁 `public` |
+| 📄 `SURPRISES.md` |
+| 📄 `DOCUMENTATION.md` |
+| 📄 `vite.config.ts` |
+| 📄 `eslint.config.js` |
+| 📄 `.prettierrc` |
+| 📄 `tailwind.config.js` |
+| 📄 `tsconfig.app.json` |
+| 📄 `tsconfig.json` |
+| 📄 `tsconfig.node.json` |
+| 📄 `index.html` |
+| 📄 `README.md` |
+| 📄 `.gitignore` |
+| 📄 `.cursorindexingignore` |
+
+</details>
+
+---
+
+
+
+---
+
+<details>
+            <summary>Searched codebase "CURSOR_COMMENTS.md" • **1** results</summary>
+        
+| File |
+|------|
+| `undefined` |
+
+</details>
+
+---
+
+Read file: CURSOR_COMMENTS.md
+
+---
+
+
+
+---
+
+Model provided invalid arguments to read file tool.
+
+---
+
+<details>
+            <summary>Searched codebase "CURSOR_COMMENTS.md" • **1** results</summary>
+        
+| File |
+|------|
+| `undefined` |
+
+</details>
+
+---
+
+Model provided invalid arguments to read file tool.
+
+---
+
+
+
+---
+
+<details>
+            <summary>Searched codebase "edit CURSOR_COMMENTS.md" • **6** results</summary>
+        
+| File | Lines |
+|------|-------|
+| `CLAUDE.md` | L182-185 |
+| `CURSOR_COMMENTS.md` | L1-29 |
+| `.cursorrules` | L1-32 |
+| `SUPRISES-CURSOR.md` | L1-3 |
+| `.cursorindexingignore` | L1-4 |
+| `CLAUDE.md` | L124-182 |
+
+</details>
+
+---
+
+
+
+---
+
+Model provided invalid arguments to read file tool.
+
+---
+
+<details>
+            <summary>Searched codebase "CURSOR_COMMENTS.md" • **1** results</summary>
+        
+| File |
+|------|
+| `undefined` |
+
+</details>
+
+---
+
+Model provided invalid arguments to read file tool.
+
+---
+
+<details>
+            <summary>Searched codebase "CURSOR_COMMENTS.md" • **1** results</summary>
+        
+| File |
+|------|
+| `undefined` |
+
+</details>
+
+---
+
+<details>
+            <summary>Searched codebase "CURSOR_COMMENTS" • **1** results</summary>
+        
+| File |
+|------|
+| `undefined` |
+
+</details>
+
+---
+
+
+
+---
+
+Model provided invalid arguments to read file tool.
+
+---
+
+<details>
+            <summary>Searched codebase "path" • **2** results</summary>
+        
+| File |
+|------|
+| `undefined` |
+| `undefined` |
+
+</details>
+
+---
+
+
+
+---
+
+<details>
+            <summary>Searched codebase "edit_file" • **0** results</summary>
+        
+No results found
+</details>
+
+---
+
+
+
+---
+
+Changes since last sync (high-level)
+
+1. Supabase  
+   • `src/lib/supabase.ts` – client bootstrap + typed interfaces.  
+   • Edge function `supabase/functions/grammar_check/` calls LanguageTool, stores suggestions.
+
+2. Auth flow  
+   • `src/contexts/AuthContext.tsx` with Google OAuth.  
+   • Pages: `Login.tsx`, `Dashboard.tsx`, `EditorPage.tsx` wired with route guards.
+
+3. Editor & autosave  
+   • `src/editor/Editor.tsx` (Tiptap + highlight).  
+   • `src/store/useDocStore.ts` (Zustand CRUD + autosave).  
+   • `src/hooks/useDebounce.ts` & `useAutosave`.  
+
+4. Grammar suggestions  
+   • `src/hooks/useGrammarCheck.ts` invokes edge fn; subscribes to realtime channel.  
+   • `SuggestionPopover.tsx` shows replacements / ignore.  
+   • Highlights added via Tiptap highlight extension.
+
+5. New rule/scratch files  
+   • `.cursorrules` with protected-file list.  
+   • `SUPRISES-CURSOR.md` created for dev-authored surprises.
+
+CI green & Vercel preview deploy succeeds.
+
+Immediate next tasks
+• Readability meter + `readability` edge function.  
+• Passive-voice detection gauge.  
+• `export_docx` edge function + download button.  
+• QA: track suggestion acceptance-rate, add error handling.
+
+(Need to append this summary into `CURSOR_COMMENTS.md` under a new dated section.)
+
+---
+
+_**User**_
+
+what do we have in the queue to update?
+
+---
+
+_**Assistant**_
+
+
+
+---
+
+Open work items (next-up queue)
+
+1. Readability & style
+   • Edge function `readability.ts` – compute Flesch score + passive-voice %.  
+   • `ReadabilityMeter` component; show live gauge in editor toolbar.
+
+2. Suggestion UX polish
+   • Position `SuggestionPopover` at caret; dismiss on ESC.  
+   • Colour-coded underlines (CSS) rather than highlight fill.  
+   • Add “Apply all” and “Ignore rule” bulk actions.
+
+3. Export flow
+   • Edge function `export_docx.ts` – create DOCX, upload to storage, return signed URL.  
+   • “Download .docx” button on dashboard + editor page.
+
+4. Onboarding / auth
+   • Redirect unauthenticated users to `/login`.  
+   • Profile edit modal (display name, locale preference).
+
+5. Testing / CI
+   • Cypress happy-path: login → new doc → grammar underline appears → apply suggestion → export.  
+   • Add `npm run test:e2e` step to CI.
+
+6. Documentation cadence
+   • Append new dated section to `CURSOR_COMMENTS.md` (catch-up summary already drafted).  
+   • Create `docs/Day-4-Complete.md` at end of today.
+
+7. Stretch
+   • Realtime text collaboration toggle (Supabase Realtime).  
+   • OpenAI style-rewrite prototype (phase-2 flag).
+
+Nothing blocking; grammar_check edge fn is live.
 
 ---
 

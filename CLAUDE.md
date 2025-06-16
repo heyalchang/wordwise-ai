@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **WordWise AI** - An AI-powered writing assistant targeting ESL college students writing essays. This is a 7-day project to build a Grammarly clone with enhanced AI features.
 
-**Current Status**: Planning phase - PRD and technical specifications complete, no code written yet.
+**Current Status**: Day 4 complete - Full grammar checking system implemented with real-time suggestions, highlighting, and interactive popovers. Ready for Day 5 (readability metrics).
 
 ## Architecture
 
@@ -26,16 +26,16 @@ profiles (id uuid PK, display_name, locale, writing_goals jsonb)
 documents (id uuid PK, owner uuid FK, title, content, readability jsonb)
 
 -- suggestions: Grammar/style suggestions from LanguageTool
-suggestions (id bigint PK, doc_id uuid FK, start, end, type, message, replacements jsonb)
+suggestions (id bigint PK, doc_id uuid FK, start_pos, end_pos, type, message, replacements jsonb)
 ```
 
 All tables have Row Level Security (RLS) enabled - users can only access their own data.
 
 ### Edge Functions
 
-- `grammar_check.ts`: Calls LanguageTool API, stores suggestions
-- `readability.ts`: Computes Flesch score and passive voice percentage
-- `export_docx.ts`: Generates DOCX files with corrections applied
+- `grammar_check.ts`: ✅ IMPLEMENTED - Calls LanguageTool API, stores suggestions
+- `readability.ts`: 🔄 PLANNED - Computes Flesch score and passive voice percentage
+- `export_docx.ts`: 🔄 PLANNED - Generates DOCX files with corrections applied
 
 ## Development Setup
 
@@ -63,27 +63,50 @@ npm run build
 
 ## Implementation Timeline
 
-**Day 1**: Repository setup, Supabase project creation, CI/CD pipeline
-**Day 2**: Auth flow (Google OAuth), database tables with RLS, dashboard page
-**Day 3**: Tiptap editor integration, document autosave, responsive layout
-**Day 4**: LanguageTool integration, real-time underlines, suggestion popovers
-**Day 5**: Readability metrics, passive voice detection, live updates
-**Day 6**: DOCX export functionality, UI polish, dark mode
-**Day 7**: Testing, demo recording, documentation
+**Day 1**: ✅ Repository setup, Supabase project creation, CI/CD pipeline
+**Day 2**: ✅ Auth flow (Google OAuth), database tables with RLS, dashboard page
+**Day 3**: ✅ Tiptap editor integration, document autosave, responsive layout
+**Day 4**: ✅ LanguageTool integration, real-time underlines, suggestion popovers
+**Day 5**: 🔄 Readability metrics, passive voice detection, live updates
+**Day 6**: 🔄 DOCX export functionality, UI polish, dark mode
+**Day 7**: 🔄 Testing, demo recording, documentation
+
+## Current Implementation Status (Day 4 Complete)
+
+### ✅ Completed Features
+- **Authentication System**: Google OAuth with Supabase Auth
+- **Document Management**: Create, save, load documents with real-time sync
+- **Rich Text Editor**: Tiptap integration with autosave functionality
+- **Grammar Checking**: Full LanguageTool integration with Edge Functions
+- **Real-time Suggestions**: Live grammar checking with visual highlighting
+- **Interactive Corrections**: Click-to-apply suggestion popovers
+- **Database Integration**: PostgreSQL with RLS, real-time subscriptions
+
+### 🔄 In Progress / Planned
+- **Readability Metrics**: Flesch score and passive voice detection
+- **Export Functionality**: DOCX export with applied corrections
+- **UI Enhancements**: Dark mode, mobile optimization
+- **Advanced AI**: OpenAI integration for context-aware suggestions
 
 ## Key Implementation Notes
 
 ### Frontend Structure
 ```
 src/
-  editor/Editor.tsx          - Tiptap instance with grammar checking
-  store/useDocStore.ts       - Zustand store for document state
+  editor/Editor.tsx          - ✅ Tiptap instance with grammar checking
+  store/useDocStore.ts       - ✅ Zustand store for document state
+  hooks/
+    useGrammarCheck.ts       - ✅ Real-time grammar checking hook
+    useDebounce.ts           - ✅ Debounced input handling
   components/
-    SuggestionPopover.tsx    - Grammar suggestion UI
-    ReadabilityMeter.tsx     - Live readability metrics
+    SuggestionPopover.tsx    - ✅ Grammar suggestion UI
+    ReadabilityMeter.tsx     - 🔄 PLANNED - Live readability metrics
   pages/
-    dashboard.tsx            - Document list
-    editor/[id].tsx          - Editor page with auth guard
+    Dashboard.tsx            - ✅ Document list
+    EditorPage.tsx           - ✅ Editor page with auth guard
+    Login.tsx                - ✅ Authentication page
+  contexts/
+    AuthContext.tsx          - ✅ Authentication context
 ```
 
 ### Grammar Checking Flow
@@ -94,7 +117,7 @@ src/
 5. Frontend subscribes to Realtime updates
 6. Underlines rendered via Tiptap highlight extension
 
-### Phase 2 AI Enhancements (Days 4-7)
+### Phase 2 AI Enhancements (Days 5-7)
 - Context-aware writing suggestions using OpenAI
 - Personalized style recommendations based on user goals
 - Essay structure analysis for ESL students
@@ -133,10 +156,12 @@ npm run typecheck
 # Build for production
 npm run build
 
-# Deploy Edge Functions
+# Deploy implemented Edge Functions
 supabase functions deploy grammar_check
-supabase functions deploy readability
-supabase functions deploy export_docx
+
+# Deploy planned Edge Functions (not yet implemented)
+# supabase functions deploy readability
+# supabase functions deploy export_docx
 
 # Run migrations
 supabase db push
@@ -154,7 +179,7 @@ supabase db push
 ## Common Issues & Solutions
 
 1. **CORS errors with LanguageTool**: Use Edge Function proxy
-2. **Tiptap decoration performance**: Debounce grammar checks to 1000ms
+2. **Tiptap decoration performance**: Debounce grammar checks to 2000ms
 3. **RLS policies blocking access**: Check auth.uid() in policies
 4. **Readability calculation lag**: Compute client-side, not in Edge Function
 
@@ -173,6 +198,31 @@ When implementing features:
 3. Keep language simple in UI copy
 4. Test with long-form essay content (500-2000 words)
 5. Ensure grammar suggestions are contextual, not just rule-based
+
+## Technical Verification (Day 4)
+
+### Working Features
+✅ **Authentication**: Google OAuth login/logout  
+✅ **Document CRUD**: Create, save, load, delete documents  
+✅ **Real-time Editor**: Tiptap with autosave every 2 seconds  
+✅ **Grammar Checking**: LanguageTool API via Edge Function  
+✅ **Visual Highlighting**: Color-coded error types in editor  
+✅ **Suggestion Popovers**: Interactive correction interface  
+✅ **Database Persistence**: All data stored in Supabase with RLS  
+
+### Development Commands
+```bash
+npm run dev          # ✅ Starts dev server on localhost:5173
+npm run typecheck    # ✅ TypeScript compilation check
+npm run lint         # ✅ ESLint validation (1 minor warning)
+npm run build        # ✅ Production build successful
+```
+
+### Environment Variables Required
+- `VITE_SUPABASE_URL` - Supabase project URL
+- `VITE_SUPABASE_ANON_KEY` - Supabase anonymous key  
+- `SUPABASE_SERVICE_ROLE_KEY` - For Edge Function database access
+- `LANGUAGETOOL_API_URL` - Optional, defaults to public API
 
 ## Memories
 
