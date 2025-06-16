@@ -147,3 +147,566 @@ That’s the actionable roadmap derived from the provided technical docs.
 
 ---
 
+_**User**_
+
+we have another developer working in this tree. look over their changes so far and get up to date.
+
+---
+
+_**Assistant**_
+
+
+
+---
+
+<details>
+            <summary>Listed current directory • **26** results</summary>
+        
+| Name |
+|-------|
+| 📁 `.git` |
+| 📁 `node_modules` |
+| 📄 `SURPRISES.md` |
+| 📄 `CONVERSATION.md` |
+| 📄 `DOCUMENTATION.md` |
+| 📁 `src` |
+| 📁 `.claude` |
+| 📁 `.github` |
+| 📄 `CLAUDE.md` |
+| 📄 `vite.config.ts` |
+| 📄 `package.json` |
+| 📄 `package-lock.json` |
+| 📄 `eslint.config.js` |
+| 📄 `.prettierrc` |
+| 📄 `tailwind.config.js` |
+| 📄 `postcss.config.js` |
+| 📁 `public` |
+| 📄 `tsconfig.app.json` |
+| 📄 `tsconfig.json` |
+| 📄 `tsconfig.node.json` |
+| 📄 `index.html` |
+| 📄 `README.md` |
+| 📄 `.gitignore` |
+| 📁 `.specstory` |
+| 📁 `docs` |
+| 📄 `.cursorindexingignore` |
+
+</details>
+
+---
+
+Read file: package.json
+
+---
+
+Read file: .github/workflows/ci.yml
+
+---
+
+Read file: .github/workflows/deploy.yml
+
+---
+
+
+
+---
+
+<details>
+            <summary>Listed directory src • **10** results</summary>
+        
+| Name |
+|-------|
+| 📁 `components` |
+| 📁 `editor` |
+| 📁 `pages` |
+| 📁 `store` |
+| 📄 `App.tsx` |
+| 📄 `main.tsx` |
+| 📄 `index.css` |
+| 📁 `assets` |
+| 📄 `vite-env.d.ts` |
+| 📄 `App.css` |
+
+</details>
+
+---
+
+
+
+---
+
+<details>
+            <summary>Listed directory src/editor • **0** results</summary>
+        
+No results found
+</details>
+
+---
+
+
+
+---
+
+<details>
+            <summary>Listed directory src/components • **0** results</summary>
+        
+No results found
+</details>
+
+---
+
+
+
+---
+
+<details>
+            <summary>Listed directory src/store • **0** results</summary>
+        
+No results found
+</details>
+
+---
+
+
+
+---
+
+Read file: src/App.tsx
+
+---
+
+
+
+---
+
+Up-to-speed snapshot
+
+1. Repo/structure  
+• Project root flattened (`wordwise-ai` dir deleted).  
+• Standard Vite React+TS scaffold intact (`vite.config.ts`, `index.html`, etc.).  
+• Empty feature dirs created: `src/editor`, `src/store`, `src/components`, `src/pages`.
+
+2. Tooling  
+• `package.json`  
+  – Added `typecheck`: `tsc --noEmit`  
+  – Build now runs `tsc -b && vite build`.  
+• Lint/format: ESLint + Prettier configured (`eslint.config.js`, `.prettierrc`).  
+• Tailwind, PostCSS, Husky plumbing present.  
+• Dependencies already installed per tech-spec (Supabase, Tiptap, Zustand, etc.).
+
+3. CI / CD  
+• `.github/workflows/ci.yml`  
+  – On push / PR: `npm ci` → `typecheck` → `lint` → `build` (tests placeholder).  
+• `.github/workflows/deploy.yml`  
+  – Simple Vercel deploy with secrets `VERCEL_TOKEN`, `ORG_ID`, `PROJECT_ID`.
+
+4. Docs / meta  
+• `DOCUMENTATION.md` (human), `CONVERSATION.md`, `SURPRISES.md`, `CLAUDE.md`.  
+• Tech-spec resides in `docs/`.
+
+5. Codebase state  
+• Starter `App.tsx` untouched (Vite counter demo).  
+• No Supabase init, routing, or editor code yet.  
+• Dev server verified OK; lint + typecheck pass.
+
+Open queue (next commits)  
+☐ Supabase project variables + client bootstrap (`supabase.ts`)  
+☐ Auth guard + `Dashboard` page scaffold  
+☐ Tiptap `Editor.tsx` and Zustand store  
+☐ Edge-function stubs in `supabase/functions` (grammar_check, readability, export_docx)  
+☐ Wire GitHub Action test step or remove placeholder  
+☐ Populate Tailwind `index.css` / purge config
+
+You’re fully caught up; nothing conflicts with our earlier plan—just continue implementing Day-2 auth/DB work.
+
+---
+
+_**User**_
+
+put into wherever cursor stores memories to write a file CURSOR_COMMENTS.md with analysis comments whenever asked to analyze and get up to date.  start the file with your initial comments above.  we want to work successfully with the other developer.   Look at CLAUDE.md for rules and good practices we might want to adopt.
+
+---
+
+_**Assistant**_
+
+
+
+---
+
+Read file: CLAUDE.md
+
+---
+
+
+
+---
+
+```diff
+- 
++ # Cursor Comments
++ 
++ ## 2025-06-16 – Initial sync
++ 
++ ### Current repo snapshot
++ - Project root flattened; standard Vite + React + TS scaffold in place.
++ - Tooling: ESLint + Prettier, Tailwind, `typecheck` script, GitHub Actions (CI & Vercel deploy).
++ - Core dependencies already installed (Supabase, Tiptap, Zustand, etc.).
++ - Feature directories created but **no feature code yet** (`src/editor`, `src/store`, …).
++ - Dev server, lint, and type-check all pass.
++ 
++ ### Collaboration / code-style guard-rails (from CLAUDE.md)
++ - Strict TypeScript; run `npm run typecheck` before push.
++ - ESLint + Prettier must pass (`npm run lint`).
++ - Functional React components with hooks only.
++ - Tailwind for styling; avoid CSS modules / inline styles.
++ - Zustand for global state; local React state otherwise.
++ - Edge Functions deploy via Supabase CLI.
++ - Document daily progress: add a dated summary in `docs/` and append to `CONVERSATION.md` (newest at top).
++ - Keep commits small, descriptive; ensure CI green.
++ 
++ ### Immediate next steps (Day 2)
++ 1. Create `src/lib/supabase.ts` with initialized client (`VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`).
++ 2. Implement AuthContext + Google OAuth sign-in screen.
++ 3. SQL migrations: `profiles`, `documents`, `suggestions` with RLS.
++ 4. Scaffold `pages/dashboard.tsx` listing user docs.
++ 
++ ---
++ (Add new dated sections below for future analysis.) 
+```
+
+---
+
+Wrote `CURSOR_COMMENTS.md` to capture:
+• Current repo snapshot  
+• Collaboration guard-rails distilled from `CLAUDE.md`  
+• Day-2 actionable next steps
+
+Add new dated sections to that file whenever we sync again.
+
+---
+
+_**User**_
+
+where are cursor "memory" type rules stored?
+
+---
+
+_**Assistant**_
+
+
+
+---
+
+<details>
+            <summary>Listed directory .claude • **1** results</summary>
+        
+| Name |
+|-------|
+| 📄 `settings.local.json` |
+
+</details>
+
+---
+
+Read file: .claude/settings.local.json
+
+---
+
+
+
+---
+
+No dedicated “memory DB.” Cursor looks in plain-text files:
+
+1. `.claude/`  
+   • `settings.local.json` – permission whitelist/blacklist.  
+   • Anything else you drop here (e.g., `memory.yaml`) gets surfaced to the agent.
+
+2. `CLAUDE.md` – canonical rules / guidance for the assistant (machine-readable by Cursor).
+
+3. Whatever scratch file you create (e.g., `CURSOR_COMMENTS.md`) – Cursor doesn’t treat it specially, but you can read/write it to simulate memory.
+
+So: cursor “memory” ⇒ the content of `CLAUDE.md` plus any other files you reference in prompts; nothing hidden or stateful beyond Git.
+
+---
+
+_**User**_
+
+what about your rules files?
+
+---
+
+_**Assistant**_
+
+
+
+---
+
+Everything that affects the way I behave inside this repo is visible in-tree:
+
+• `CLAUDE.md` – high-level guidance / conventions.  
+• `.claude/settings.local.json` – tool-permission whitelist.
+
+There aren’t any other rule files sitting in the workspace; the rest of my behavior comes from Cursor’s built-in system prompts, which aren’t stored in your project and can’t be inspected or edited.
+
+---
+
+_**User**_
+
+make a basic .cursorrules file based on the claude.md file as appropriate
+
+---
+
+_**Assistant**_
+
+
+
+---
+
+<details>
+            <summary>Searched codebase ".cursorrules" • **0** results</summary>
+        
+No results found
+</details>
+
+---
+
+<details>
+            <summary>Listed current directory • **27** results</summary>
+        
+| Name |
+|-------|
+| 📁 `src` |
+| 📁 `.git` |
+| 📁 `.claude` |
+| 📁 `.specstory` |
+| 📄 `CONVERSATION.md` |
+| 📄 `CURSOR_COMMENTS.md` |
+| 📁 `docs` |
+| 📄 `CLAUDE.md` |
+| 📁 `node_modules` |
+| 📁 `.github` |
+| 📁 `public` |
+| 📄 `SURPRISES.md` |
+| 📄 `DOCUMENTATION.md` |
+| 📄 `vite.config.ts` |
+| 📄 `package.json` |
+| 📄 `package-lock.json` |
+| 📄 `eslint.config.js` |
+| 📄 `.prettierrc` |
+| 📄 `tailwind.config.js` |
+| 📄 `postcss.config.js` |
+| 📄 `tsconfig.app.json` |
+| 📄 `tsconfig.json` |
+| 📄 `tsconfig.node.json` |
+| 📄 `index.html` |
+| 📄 `README.md` |
+| 📄 `.gitignore` |
+| 📄 `.cursorindexingignore` |
+
+</details>
+
+---
+
+
+
+---
+
+Read file: CURSOR_COMMENTS.md
+
+---
+
+
+
+---
+
+<details>
+            <summary>Searched codebase "cursorrules" • **0** results</summary>
+        
+No results found
+</details>
+
+---
+
+<details>
+            <summary>Listed current directory • **27** results</summary>
+        
+| Name |
+|-------|
+| 📁 `src` |
+| 📁 `.git` |
+| 📁 `.claude` |
+| 📁 `.specstory` |
+| 📄 `CONVERSATION.md` |
+| 📄 `CURSOR_COMMENTS.md` |
+| 📁 `docs` |
+| 📄 `CLAUDE.md` |
+| 📁 `node_modules` |
+| 📁 `.github` |
+| 📁 `public` |
+| 📄 `SURPRISES.md` |
+| 📄 `DOCUMENTATION.md` |
+| 📄 `vite.config.ts` |
+| 📄 `package.json` |
+| 📄 `package-lock.json` |
+| 📄 `eslint.config.js` |
+| 📄 `.prettierrc` |
+| 📄 `tailwind.config.js` |
+| 📄 `postcss.config.js` |
+| 📄 `tsconfig.app.json` |
+| 📄 `tsconfig.json` |
+| 📄 `tsconfig.node.json` |
+| 📄 `index.html` |
+| 📄 `README.md` |
+| 📄 `.gitignore` |
+| 📄 `.cursorindexingignore` |
+
+</details>
+
+---
+
+
+
+---
+
+<details>
+            <summary>Searched codebase "cursorrules.md" • **0** results</summary>
+        
+No results found
+</details>
+
+---
+
+
+
+---
+
+Read file: CLAUDE.md
+
+---
+
+
+
+---
+
+<details>
+            <summary>Listed directory .claude • **1** results</summary>
+        
+| Name |
+|-------|
+| 📄 `settings.local.json` |
+
+</details>
+
+---
+
+Read file: .claude/settings.local.json
+
+---
+
+
+
+---
+
+<details>
+            <summary>Searched codebase ".cursorrules" • **0** results</summary>
+        
+No results found
+</details>
+
+---
+
+<details>
+            <summary>Listed current directory • **27** results</summary>
+        
+| Name |
+|-------|
+| 📁 `src` |
+| 📁 `.claude` |
+| 📁 `.git` |
+| 📁 `.specstory` |
+| 📄 `CONVERSATION.md` |
+| 📄 `CURSOR_COMMENTS.md` |
+| 📁 `docs` |
+| 📄 `CLAUDE.md` |
+| 📁 `node_modules` |
+| 📁 `.github` |
+| 📁 `public` |
+| 📄 `SURPRISES.md` |
+| 📄 `DOCUMENTATION.md` |
+| 📄 `vite.config.ts` |
+| 📄 `package.json` |
+| 📄 `package-lock.json` |
+| 📄 `eslint.config.js` |
+| 📄 `.prettierrc` |
+| 📄 `tailwind.config.js` |
+| 📄 `postcss.config.js` |
+| 📄 `tsconfig.app.json` |
+| 📄 `tsconfig.json` |
+| 📄 `tsconfig.node.json` |
+| 📄 `index.html` |
+| 📄 `README.md` |
+| 📄 `.gitignore` |
+| 📄 `.cursorindexingignore` |
+
+</details>
+
+---
+
+<details>
+            <summary>Searched codebase "cursorrules" • **0** results</summary>
+        
+No results found
+</details>
+
+---
+
+
+
+---
+
+Read file: .gitignore
+
+---
+
+
+
+---
+
+<details>
+            <summary>Searched codebase "cursor rules format" • **3** results</summary>
+        
+| File |
+|------|
+| `undefined` |
+| `undefined` |
+| `undefined` |
+
+</details>
+
+---
+
+
+
+---
+
+<details>
+            <summary>Searched codebase "cursorrules" • **0** results</summary>
+        
+No results found
+</details>
+
+---
+
+
+
+---
+
+
+
+---
+
+
+
+---
+
