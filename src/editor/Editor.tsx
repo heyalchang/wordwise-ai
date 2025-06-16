@@ -1,12 +1,26 @@
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import Highlight from '@tiptap/extension-highlight';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import { useGrammarCheck } from '../hooks/useGrammarCheck';
+import { SuggestionPopover } from '../components/SuggestionPopover';
+import { supabase } from '../lib/supabase';
 import './Editor.css';
+
+interface Suggestion {
+  id: number;
+  doc_id: string;
+  start_pos: number;
+  end_pos: number;
+  type: string;
+  message: string;
+  replacements: string[];
+}
 
 interface EditorProps {
   content: string;
   onUpdate: (content: string) => void;
+  documentId: string;
   placeholder?: string;
   editable?: boolean;
 }
@@ -14,9 +28,19 @@ interface EditorProps {
 export function Editor({
   content,
   onUpdate,
+  documentId,
   placeholder = 'Start writing your essay...',
   editable = true,
 }: EditorProps) {
+  const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
+  const [selectedSuggestion, setSelectedSuggestion] =
+    useState<Suggestion | null>(null);
+
+  const { checkGrammar } = useGrammarCheck({
+    documentId,
+    onSuggestionsUpdate: setSuggestions,
+  });
+
   const editor = useEditor({
     extensions: [
       StarterKit.configure({
@@ -38,6 +62,9 @@ export function Editor({
     onUpdate: ({ editor }) => {
       const html = editor.getHTML();
       onUpdate(html);
+
+      // Trigger grammar check on content change
+      checkGrammar(html);
     },
     editorProps: {
       attributes: {
@@ -74,11 +101,60 @@ export function Editor({
     editor.chain().focus().unsetHighlight().run();
   }, [editor]);
 
+  const handleApplySuggestion = useCallback(
+    async (suggestionId: number, replacement: string) => {
+      if (!editor) return;
+
+      const suggestion = suggestions.find((s) => s.id === suggestionId);
+      if (!suggestion) return;
+
+      // Apply the replacement in the editor
+      editor
+        .chain()
+        .focus()
+        .setTextSelection({
+          from: suggestion.start_pos,
+          to: suggestion.end_pos,
+        })
+        .insertContent(replacement)
+        .run();
+
+      // Delete the suggestion from database
+      await supabase.from('suggestions').delete().eq('id', suggestionId);
+    },
+    [editor, suggestions]
+  );
+
+  const handleDismissSuggestion = useCallback(async (suggestionId: number) => {
+    // Delete the suggestion from database
+    await supabase.from('suggestions').delete().eq('id', suggestionId);
+  }, []);
+
+  // Apply grammar highlights when suggestions change
+  useEffect(() => {
+    if (!editor || !suggestions.length) return;
+
+    // Clear existing highlights
+    clearHighlights();
+
+    // Apply new highlights for each suggestion
+    suggestions.forEach((suggestion) => {
+      setGrammarHighlight(
+        suggestion.start_pos,
+        suggestion.end_pos,
+        suggestion.type
+      );
+    });
+  }, [editor, suggestions, setGrammarHighlight, clearHighlights]);
+
   // Expose methods for grammar checking integration
   useEffect(() => {
     if (editor) {
-      (editor as any).setGrammarHighlight = setGrammarHighlight;
-      (editor as any).clearHighlights = clearHighlights;
+      // Extend editor with custom methods for grammar highlighting
+      Object.assign(editor, {
+        setGrammarHighlight,
+        clearHighlights,
+      });
     }
   }, [editor, setGrammarHighlight, clearHighlights]);
 
@@ -91,16 +167,27 @@ export function Editor({
   }
 
   return (
-    <div className="w-full">
+    <div className="w-full relative">
       <MenuBar editor={editor} />
       <div className="border border-gray-200 rounded-lg overflow-hidden">
         <EditorContent editor={editor} />
       </div>
+
+      {/* Suggestion Popover */}
+      {selectedSuggestion && (
+        <SuggestionPopover
+          suggestion={selectedSuggestion}
+          onApply={handleApplySuggestion}
+          onDismiss={handleDismissSuggestion}
+          position={{ x: 100, y: 100 }}
+          onClose={() => setSelectedSuggestion(null)}
+        />
+      )}
     </div>
   );
 }
 
-function MenuBar({ editor }: { editor: any }) {
+function MenuBar({ editor }: { editor: ReturnType<typeof useEditor> }) {
   if (!editor) {
     return null;
   }

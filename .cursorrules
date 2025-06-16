@@ -1,0 +1,32 @@
+# Cursor Rules – WordWise AI
+
+## 🔒 Machine-managed / DO-NOT-EDIT
+CLAUDE.md
+CONVERSATION.md
+CURSOR_COMMENTS.md
+SURPRISES.md
+docs/Day-*-Complete.md
+
+## 📝 Developer scratch space
+SUPRISES-CURSOR.md        # team-authored discoveries / blockers
+
+## 🛠 Coding conventions
+- TS strict; `npm run typecheck` before push.
+- Lint & format (`npm run lint`) must pass.
+- React functional components + hooks.
+- Tailwind only; no inline styles / CSS-modules.
+- Zustand for global state.
+
+## 🚀 Workflow
+- Small, descriptive commits; push only when `lint`, `typecheck`, `build` succeed.
+- CI must stay green; never force-push `main`.
+- Vercel deploys automatically from `main`.
+
+## 🌐 Edge functions
+Source in `supabase/functions/<name>.ts`; deploy with `supabase functions deploy <name>`.
+
+## 🔑 Env vars (dev & CI)
+VITE_SUPABASE_URL  
+VITE_SUPABASE_ANON_KEY  
+LANGUAGETOOL_API_URL  
+OPENAI_API_KEY

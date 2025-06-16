@@ -182,3 +182,4 @@ When implementing features:
 - As each day's work is completed, document that it is complete and what we did with a document in the docs folder
 - Nothing is deleted from the CONVERSATION.md log.  New entries are entered on top and the older entries are pushed down.
 - commit after any major changes.  absolutely after a day's work is done.
+- There is another developer working in this directory. Claude should never modify these files: .cursorrules, CURSOR_COMMENTS.md, SURPRISES-CURSOR.md

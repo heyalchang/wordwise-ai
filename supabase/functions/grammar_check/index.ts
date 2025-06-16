@@ -33,18 +33,17 @@ serve(async (req) => {
     const { docId, text } = await req.json();
 
     if (!docId || !text) {
-      return new Response(
-        JSON.stringify({ error: 'Missing docId or text' }),
-        {
-          status: 400,
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-        }
-      );
+      return new Response(JSON.stringify({ error: 'Missing docId or text' }), {
+        status: 400,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
     }
 
     // Call LanguageTool API
-    const languageToolUrl = Deno.env.get('LANGUAGETOOL_API_URL') || 'https://api.languagetool.org/v2/check';
-    
+    const languageToolUrl =
+      Deno.env.get('LANGUAGETOOL_API_URL') ||
+      'https://api.languagetool.org/v2/check';
+
     const formData = new FormData();
     formData.append('text', text);
     formData.append('language', 'en-US');
@@ -59,7 +58,8 @@ serve(async (req) => {
       throw new Error(`LanguageTool API error: ${languageToolResponse.status}`);
     }
 
-    const languageToolData: LanguageToolResponse = await languageToolResponse.json();
+    const languageToolData: LanguageToolResponse =
+      await languageToolResponse.json();
 
     // Initialize Supabase client
     const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
@@ -67,10 +67,7 @@ serve(async (req) => {
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
     // Clear existing suggestions for this document
-    await supabase
-      .from('suggestions')
-      .delete()
-      .eq('doc_id', docId);
+    await supabase.from('suggestions').delete().eq('doc_id', docId);
 
     // Transform LanguageTool matches to suggestions
     const suggestions = languageToolData.matches.map((match) => ({
@@ -79,14 +76,12 @@ serve(async (req) => {
       end_pos: match.offset + match.length,
       type: getSuggestionType(match.rule.category.id),
       message: match.message,
-      replacements: match.replacements.map(r => r.value),
+      replacements: match.replacements.map((r) => r.value),
     }));
 
     // Insert new suggestions
     if (suggestions.length > 0) {
-      const { error } = await supabase
-        .from('suggestions')
-        .insert(suggestions);
+      const { error } = await supabase.from('suggestions').insert(suggestions);
 
       if (error) {
         throw error;
@@ -105,13 +100,10 @@ serve(async (req) => {
     );
   } catch (error) {
     console.error('Grammar check error:', error);
-    return new Response(
-      JSON.stringify({ error: error.message }),
-      {
-        status: 500,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-      }
-    );
+    return new Response(JSON.stringify({ error: error.message }), {
+      status: 500,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    });
   }
 });
 

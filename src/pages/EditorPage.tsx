@@ -191,6 +191,7 @@ export function EditorPage() {
           <Editor
             content={content}
             onUpdate={setContent}
+            documentId={id!}
             placeholder="Start writing your essay... WordWise AI will help you improve your grammar and style as you write."
           />
         </div>
