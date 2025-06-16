@@ -1,70 +1,46 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import { supabase, type Document } from '../lib/supabase';
+import { useDocStore } from '../store/useDocStore';
 
 export function Dashboard() {
   const { user, signOut } = useAuth();
-  const [documents, setDocuments] = useState<Document[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const navigate = useNavigate();
+
+  const {
+    documents,
+    isLoading,
+    error,
+    loadDocuments,
+    createDocument,
+    clearError,
+  } = useDocStore();
 
   useEffect(() => {
     if (user) {
       loadDocuments();
     }
-  }, [user]);
+  }, [user, loadDocuments]);
 
-  const loadDocuments = async () => {
-    try {
-      setLoading(true);
-      const { data, error } = await supabase
-        .from('documents')
-        .select('*')
-        .order('updated_at', { ascending: false });
-
-      if (error) {
-        setError(error.message);
-      } else {
-        setDocuments(data || []);
-      }
-    } catch {
-      setError('Failed to load documents');
-    } finally {
-      setLoading(false);
+  const handleCreateDocument = async () => {
+    const newDoc = await createDocument();
+    if (newDoc) {
+      navigate(`/editor/${newDoc.id}`);
     }
   };
 
-  const createNewDocument = async () => {
-    try {
-      const { data, error } = await supabase
-        .from('documents')
-        .insert({
-          title: 'Untitled Document',
-          content: '',
-          owner: user?.id,
-        })
-        .select()
-        .single();
-
-      if (error) {
-        setError(error.message);
-      } else {
-        setDocuments([data, ...documents]);
-        // TODO: Navigate to editor with document ID
-      }
-    } catch {
-      setError('Failed to create document');
-    }
+  const handleOpenDocument = (id: string) => {
+    navigate(`/editor/${id}`);
   };
 
   const handleSignOut = async () => {
     const { error } = await signOut();
     if (error) {
-      setError(error.message);
+      console.error('Sign out error:', error);
     }
   };
 
-  if (loading) {
+  if (isLoading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
@@ -105,7 +81,7 @@ export function Dashboard() {
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-2xl font-bold text-gray-900">Your Documents</h2>
             <button
-              onClick={createNewDocument}
+              onClick={handleCreateDocument}
               className="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
             >
               New Document
@@ -113,8 +89,26 @@ export function Dashboard() {
           </div>
 
           {error && (
-            <div className="bg-red-50 border border-red-200 rounded-md p-3 mb-6">
+            <div className="bg-red-50 border border-red-200 rounded-md p-3 mb-6 flex justify-between items-center">
               <p className="text-sm text-red-600">{error}</p>
+              <button
+                onClick={clearError}
+                className="text-red-400 hover:text-red-600"
+              >
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
             </div>
           )}
 
@@ -142,7 +136,7 @@ export function Dashboard() {
                 </p>
                 <div className="mt-6">
                   <button
-                    onClick={createNewDocument}
+                    onClick={handleCreateDocument}
                     className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
                   >
                     Create Document
@@ -153,7 +147,10 @@ export function Dashboard() {
               <ul className="divide-y divide-gray-200">
                 {documents.map((doc) => (
                   <li key={doc.id}>
-                    <div className="px-4 py-4 sm:px-6 hover:bg-gray-50 cursor-pointer">
+                    <div
+                      className="px-4 py-4 sm:px-6 hover:bg-gray-50 cursor-pointer"
+                      onClick={() => handleOpenDocument(doc.id)}
+                    >
                       <div className="flex items-center justify-between">
                         <div className="flex-1">
                           <p className="text-sm font-medium text-indigo-600 truncate">

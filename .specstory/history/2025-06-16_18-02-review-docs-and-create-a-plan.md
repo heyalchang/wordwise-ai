@@ -702,7 +702,397 @@ No results found
 
 ---
 
+Read file: CURSOR_COMMENTS.md
 
+---
+
+
+
+---
+
+<details>
+            <summary>Searched codebase "cursorrules" • **0** results</summary>
+        
+No results found
+</details>
+
+---
+
+
+
+---
+
+Could not find file '.cursorrules' in the workspace.
+
+---
+
+
+
+---
+
+<details>
+            <summary>Searched codebase ".cursorrules" • **0** results</summary>
+        
+No results found
+</details>
+
+---
+
+<details>
+            <summary>Listed current directory • **27** results</summary>
+        
+| Name |
+|-------|
+| 📁 `src` |
+| 📁 `.specstory` |
+| 📁 `.claude` |
+| 📁 `.git` |
+| 📄 `CONVERSATION.md` |
+| 📄 `CURSOR_COMMENTS.md` |
+| 📁 `docs` |
+| 📄 `CLAUDE.md` |
+| 📁 `node_modules` |
+| 📁 `.github` |
+| 📁 `public` |
+| 📄 `SURPRISES.md` |
+| 📄 `DOCUMENTATION.md` |
+| 📄 `vite.config.ts` |
+| 📄 `package.json` |
+| 📄 `package-lock.json` |
+| 📄 `eslint.config.js` |
+| 📄 `.prettierrc` |
+| 📄 `tailwind.config.js` |
+| 📄 `postcss.config.js` |
+| 📄 `tsconfig.app.json` |
+| 📄 `tsconfig.json` |
+| 📄 `tsconfig.node.json` |
+| 📄 `index.html` |
+| 📄 `README.md` |
+| 📄 `.gitignore` |
+| 📄 `.cursorindexingignore` |
+
+</details>
+
+---
+
+
+
+---
+
+Read file: .cursorindexingignore
+
+---
+
+
+
+---
+
+<details>
+            <summary>Searched codebase "cursor rules" • **3** results</summary>
+        
+| File |
+|------|
+| `undefined` |
+| `undefined` |
+| `undefined` |
+
+</details>
+
+---
+
+
+
+---
+
+Model provided invalid arguments to read file tool.
+
+---
+
+
+
+---
+
+Model provided invalid arguments to read file tool.
+
+---
+
+
+
+---
+
+<details>
+            <summary>Searched codebase ".cursorrules" • **0** results</summary>
+        
+No results found
+</details>
+
+---
+
+
+
+---
+
+Model provided invalid arguments to read file tool.
+
+---
+
+
+
+---
+
+<details>
+            <summary>Listed current directory • **27** results</summary>
+        
+| Name |
+|-------|
+| 📁 `src` |
+| 📁 `.specstory` |
+| 📁 `.claude` |
+| 📁 `.git` |
+| 📄 `CONVERSATION.md` |
+| 📄 `CURSOR_COMMENTS.md` |
+| 📁 `docs` |
+| 📄 `CLAUDE.md` |
+| 📁 `node_modules` |
+| 📁 `.github` |
+| 📁 `public` |
+| 📄 `SURPRISES.md` |
+| 📄 `DOCUMENTATION.md` |
+| 📄 `vite.config.ts` |
+| 📄 `package.json` |
+| 📄 `package-lock.json` |
+| 📄 `eslint.config.js` |
+| 📄 `.prettierrc` |
+| 📄 `tailwind.config.js` |
+| 📄 `postcss.config.js` |
+| 📄 `tsconfig.app.json` |
+| 📄 `tsconfig.json` |
+| 📄 `tsconfig.node.json` |
+| 📄 `index.html` |
+| 📄 `README.md` |
+| 📄 `.gitignore` |
+| 📄 `.cursorindexingignore` |
+
+</details>
+
+---
+
+
+
+---
+
+Model provided invalid arguments to read file tool.
+
+---
+
+
+
+---
+
+<details>
+            <summary>Searched codebase "edit_file" • **0** results</summary>
+        
+No results found
+</details>
+
+---
+
+
+
+---
+
+Model provided invalid arguments to read file tool.
+
+---
+
+
+
+---
+
+<details>
+            <summary>Searched codebase "CURSOR_COMMENTS.md" • **1** results</summary>
+        
+| File |
+|------|
+| `undefined` |
+
+</details>
+
+---
+
+
+
+---
+
+<details>
+            <summary>Searched codebase "edit_file" • **0** results</summary>
+        
+No results found
+</details>
+
+---
+
+
+
+---
+
+Could not resolve URI: Error: Unable to resolve nonexistent file '/Users/alchang/Documents/CursorProjects/gaunlet/functions'
+
+---
+
+
+
+---
+
+Need to create a `.cursorrules` file summarizing coding & collaboration rules drawn from `CLAUDE.md`.
+
+Suggested content:
+
+```0:0:.cursorrules
+# Cursor Rules – WordWise AI
+
+## Coding conventions
+- TypeScript strict mode; run `npm run typecheck` before every push.
+- ESLint + Prettier must pass (`npm run lint`); CI blocks on failures.
+- React code = functional components with hooks only.
+- Styling via Tailwind CSS; avoid CSS-modules & inline styles.
+- Global state → Zustand; use local React state elsewhere.
+
+## Commits & CI
+- Keep commits small and descriptive; reference ticket/day when relevant.
+- Push only when `lint`, `typecheck`, and `build` all succeed locally.
+- GitHub Actions workflows (`ci.yml`, `deploy.yml`) must stay green.
+
+## Documentation cadence
+- Prepend each work session to `CONVERSATION.md` (newest at top).
+- After finishing a day, add `docs/Day-<N>-Complete.md` summarizing deliverables.
+- Capture unexpected discoveries in `SURPRISES.md`.
+
+## Edge-function etiquette
+- Source code lives in `supabase/functions/<name>.ts`.
+- Deploy via `supabase functions deploy <name>`; commit the generated manifest.
+
+## Environment variables (required for dev & CI)
+- `VITE_SUPABASE_URL`
+- `VITE_SUPABASE_ANON_KEY`
+- `LANGUAGETOOL_API_URL`
+- `OPENAI_API_KEY` (Phase 2)
+
+## File ownership
+- `CLAUDE.md` = canonical spec; update when architecture changes.
+- `CURSOR_COMMENTS.md` = running analysis scratchpad; append dated sections – never rewrite history.
+```
+
+Save at repo root; track in Git so both devs share the same guard-rails.
+
+---
+
+_**User**_
+
+let's adjust those so you don't walk over CLAUDE.md and CONVERSATION.md.  Those belong to claude and shouldn't be touched (that should be in the rules too).  let's redo this taking that into account
+
+---
+
+_**Assistant**_
+
+
+
+---
+
+<details>
+            <summary>Searched codebase ".cursorrules" • **0** results</summary>
+        
+No results found
+</details>
+
+---
+
+<details>
+            <summary>Listed current directory • **27** results</summary>
+        
+| Name |
+|-------|
+| 📁 `.git` |
+| 📄 `CONVERSATION.md` |
+| 📁 `docs` |
+| 📄 `CURSOR_COMMENTS.md` |
+| 📁 `src` |
+| 📁 `.specstory` |
+| 📁 `.claude` |
+| 📄 `CLAUDE.md` |
+| 📁 `node_modules` |
+| 📁 `.github` |
+| 📁 `public` |
+| 📄 `SURPRISES.md` |
+| 📄 `DOCUMENTATION.md` |
+| 📄 `vite.config.ts` |
+| 📄 `package.json` |
+| 📄 `package-lock.json` |
+| 📄 `eslint.config.js` |
+| 📄 `.prettierrc` |
+| 📄 `tailwind.config.js` |
+| 📄 `postcss.config.js` |
+| 📄 `tsconfig.app.json` |
+| 📄 `tsconfig.json` |
+| 📄 `tsconfig.node.json` |
+| 📄 `index.html` |
+| 📄 `README.md` |
+| 📄 `.gitignore` |
+| 📄 `.cursorindexingignore` |
+
+</details>
+
+---
+
+<details>
+            <summary>Searched codebase "cursorrules" • **0** results</summary>
+        
+No results found
+</details>
+
+---
+
+<details>
+            <summary>Listed directory docs • **4** results</summary>
+        
+| Name |
+|-------|
+| 📄 `Day-2-Complete.md` |
+| 📄 `Day-1-Complete.md` |
+| 📄 `technical spec.txt` |
+| 📄 `PRD - wordwise.md` |
+
+</details>
+
+---
+
+
+
+---
+
+Model provided invalid arguments to read file tool.
+
+---
+
+<details>
+            <summary>Searched codebase "CURSOR_COMMENTS.md" • **1** results</summary>
+        
+| File |
+|------|
+| `undefined` |
+
+</details>
+
+---
+
+<details>
+            <summary>Searched codebase "Day-2-Complete.md" • **1** results</summary>
+        
+| File |
+|------|
+| `undefined` |
+
+</details>
 
 ---
 
