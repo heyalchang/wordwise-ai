@@ -173,3 +173,9 @@ When implementing features:
 3. Keep language simple in UI copy
 4. Test with long-form essay content (500-2000 words)
 5. Ensure grammar suggestions are contextual, not just rule-based
+
+## Memories
+
+- Keep documentation up-to-date. CLAUDE.md is for claude and machines. DOCUMENTATION.md is for humans.
+- After each conversation turn, write to CONVERSATION.md:  the request and a couple sentences on what we did and what happened.
+- When something surprising happens, write into Surprises.md what we expected to happen and what we discovered. This will be used for long-term learning so we work even more efficiently in the future.
