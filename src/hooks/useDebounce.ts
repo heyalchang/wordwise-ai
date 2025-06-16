@@ -1,11 +1,13 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export function useDebounce<T extends unknown[]>(
   callback: (...args: T) => void,
   delay: number
 ) {
   const callbackRef = useRef(callback);
-  const timeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(
+    undefined
+  );
 
   // Update callback ref when callback changes
   useEffect(() => {
@@ -30,6 +32,23 @@ export function useDebounce<T extends unknown[]>(
       callbackRef.current(...args);
     }, delay);
   };
+}
+
+// Hook for debouncing values
+export function useDebouncedValue<T>(value: T, delay: number): T {
+  const [debouncedValue, setDebouncedValue] = useState<T>(value);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [value, delay]);
+
+  return debouncedValue;
 }
 
 export function useAutosave(

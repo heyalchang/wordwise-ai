@@ -186,19 +186,20 @@ export function EditorPage() {
       )}
 
       {/* Editor */}
-      <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="bg-white rounded-lg shadow-sm">
           <Editor
             content={content}
             onUpdate={setContent}
             documentId={id!}
+            document={currentDocument}
             placeholder="Start writing your essay... WordWise AI will help you improve your grammar and style as you write."
           />
         </div>
       </main>
 
       {/* Footer with stats */}
-      <footer className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
+      <footer className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
         <div className="bg-white rounded-lg shadow-sm p-4">
           <div className="flex justify-between items-center text-sm text-gray-500">
             <div>

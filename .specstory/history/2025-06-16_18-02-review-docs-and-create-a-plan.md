@@ -3350,3 +3350,119 @@ Nothing blocking; grammar_check edge fn is live.
 
 ---
 
+_**User**_
+
+update the CURSOR_COMMENTS.md file.  look over the whole context of this conversation and build/rebuild it like it needs to be with updates for each analysis that you did.  Add notes to .cursorrules, NEVER modify the Day-*-Compete.md files.  Claude is using thing.  you can start Cursor-Day-*-Complete.md files if you need to.
+
+---
+
+_**Assistant**_
+
+
+
+---
+
+```diff
+  3. SQL migrations: `profiles`, `documents`, `suggestions` with RLS.
+  4. Scaffold `pages/dashboard.tsx` listing user docs.
++ 
++ ## 2025-06-16 – Catch-up sync
++ 
++ ### New code since initial snapshot
++ - Supabase client bootstrap (`src/lib/supabase.ts`) with typed interfaces.
++ - Auth flow in place: `AuthContext`, `Login`, `Dashboard`, `EditorPage` with route guards.
++ - Editor stack complete: `Editor.tsx` (Tiptap + toolbar) + autosave via `useDocStore` & `useDebounce`.
++ - Grammar pipeline delivered:
++   - Edge function `supabase/functions/grammar_check` → LanguageTool → `suggestions` table.
++   - Hook `useGrammarCheck` + realtime channel.
++   - UI: coloured underlines & `SuggestionPopover` (apply / ignore).
++ - Repo hygiene: `.cursorrules` and `SUPRISES-CURSOR.md` added; CI green, Vercel preview builds.
++ 
++ ### Immediate next tasks
++ 1. Build `readability` edge function (+ `ReadabilityMeter` component).
++ 2. Implement `export_docx` flow and download button.
++ 3. Position popovers at caret, ESC-dismiss; add bulk actions.
++ 4. Cypress E2E happy-path and add to CI.
++ 5. Documentation: create `docs/Cursor-Day-4-Complete.md` at EOD.
+  
+  ---
+```
+
+---
+
+```diff
+  ## 📝 Developer scratch space
+  SUPRISES-CURSOR.md        # team-authored discoveries / blockers
++ docs/Cursor-Day-*-Complete.md  # developer-authored daily summaries (Claude will ignore)
+  
+  ## 🛠 Coding conventions
+- - TS strict; `npm run typecheck` before push.
+- - Lint & format (`npm run lint`) must pass.
+- - React functional components + hooks.
+- - Tailwind only; no inline styles / CSS-modules.
+- - Zustand for global state.
+- 
+- ## 🚀 Workflow
+- - Small, descriptive commits; push only when `lint`, `typecheck`, `build` succeed.
+- - CI must stay green; never force-push `main`.
+- - Vercel deploys automatically from `main`.
+- 
+- ## 🌐 Edge functions
+- Source in `supabase/functions/<name>.ts`; deploy with `supabase functions deploy <name>`.
+- 
+- ## 🔑 Env vars (dev & CI)
+- VITE_SUPABASE_URL  
+- VITE_SUPABASE_ANON_KEY  
+- LANGUAGETOOL_API_URL  
+- OPENAI_API_KEY
++ - TS strict; `
+```
+
+---
+
+CURSOR_COMMENTS.md updated with latest sync & task list; .cursorrules now lists `docs/Cursor-Day-*-Complete.md` as dev-only summaries.
+
+---
+
+_**User**_
+
+i've added lines back to .cursorrules.
+
+---
+
+_**Assistant**_
+
+
+
+---
+
+Read file: .cursorrules
+
+---
+
+
+
+---
+
+```diff
+  # Cursor Rules – WordWise AI
++ # Shared guard-rails for every developer.
+  
+  ## 🔒 Machine-managed / DO-NOT-EDIT
+```
+
+```diff
+  
+  # Cursor Rules – WordWise AI
+- # Shared guard-rails for every developer.
+- 
+  
+  ## 🛠 Coding conventions
+```
+
+---
+
+Merged duplicate headers in `.cursorrules`; now only the top header remains with “Shared guard-rails for every developer”.
+
+---
+

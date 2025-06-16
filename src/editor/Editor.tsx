@@ -3,8 +3,11 @@ import StarterKit from '@tiptap/starter-kit';
 import Highlight from '@tiptap/extension-highlight';
 import { useCallback, useEffect, useState } from 'react';
 import { useGrammarCheck } from '../hooks/useGrammarCheck';
+import { useReadabilityCheck } from '../hooks/useReadabilityCheck';
 import { SuggestionPopover } from '../components/SuggestionPopover';
+import { ReadabilityMeter } from '../components/ReadabilityMeter';
 import { supabase } from '../lib/supabase';
+import type { Document } from '../lib/supabase';
 import './Editor.css';
 
 interface Suggestion {
@@ -21,6 +24,7 @@ interface EditorProps {
   content: string;
   onUpdate: (content: string) => void;
   documentId: string;
+  document?: Document | null;
   placeholder?: string;
   editable?: boolean;
 }
@@ -29,6 +33,7 @@ export function Editor({
   content,
   onUpdate,
   documentId,
+  document = null,
   placeholder = 'Start writing your essay...',
   editable = true,
 }: EditorProps) {
@@ -40,6 +45,9 @@ export function Editor({
     documentId,
     onSuggestionsUpdate: setSuggestions,
   });
+
+  // Add readability checking (automatically handled by hook)
+  useReadabilityCheck(documentId, content);
 
   const editor = useEditor({
     extensions: [
@@ -167,22 +175,29 @@ export function Editor({
   }
 
   return (
-    <div className="w-full relative">
-      <MenuBar editor={editor} />
-      <div className="border border-gray-200 rounded-lg overflow-hidden">
-        <EditorContent editor={editor} />
+    <div className="w-full relative flex gap-4">
+      <div className="flex-1">
+        <MenuBar editor={editor} />
+        <div className="border border-gray-200 rounded-lg overflow-hidden">
+          <EditorContent editor={editor} />
+        </div>
+
+        {/* Suggestion Popover */}
+        {selectedSuggestion && (
+          <SuggestionPopover
+            suggestion={selectedSuggestion}
+            onApply={handleApplySuggestion}
+            onDismiss={handleDismissSuggestion}
+            position={{ x: 100, y: 100 }}
+            onClose={() => setSelectedSuggestion(null)}
+          />
+        )}
       </div>
 
-      {/* Suggestion Popover */}
-      {selectedSuggestion && (
-        <SuggestionPopover
-          suggestion={selectedSuggestion}
-          onApply={handleApplySuggestion}
-          onDismiss={handleDismissSuggestion}
-          position={{ x: 100, y: 100 }}
-          onClose={() => setSelectedSuggestion(null)}
-        />
-      )}
+      {/* Readability Sidebar */}
+      <div className="w-80 flex-shrink-0">
+        <ReadabilityMeter document={document} className="sticky top-4" />
+      </div>
     </div>
   );
 }

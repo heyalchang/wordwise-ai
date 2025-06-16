@@ -227,7 +227,7 @@ npm run build        # ✅ Production build successful
 ## Memories
 
 - Keep documentation up-to-date. CLAUDE.md is for claude and machines. DOCUMENTATION.md is for humans.
-- After each conversation turn, write to CONVERSATION.md:  the request and a couple sentences on what we did and what happened.
+- After each conversation turn, write to CONVERSATION.md: the request and a couple sentences on what we did and what happened.
 - When something surprising happens, write into Surprises.md what we expected to happen and what we discovered. This will be used for long-term learning so we work even more efficiently in the future.
 - As each day's work is completed, document that it is complete and what we did with a document in the docs folder
 - Nothing is deleted from the CONVERSATION.md log.  New entries are entered on top and the older entries are pushed down.

@@ -2,6 +2,24 @@
 
 ## Session 5 - June 16, 2025
 
+### Documentation Maintenance Clarification
+
+**Request**: Clarify that CONVERSATION.md should be updated after every conversation turn, not just sessions.
+
+**What we did**: 
+- Updated CLAUDE.md to clarify documentation frequency requirement
+- Noted that conversation tracking should happen after each individual turn/exchange
+- This ensures better granular tracking of development progress and decisions
+
+**What happened**: 
+- Documentation maintenance guidelines now specify turn-by-turn tracking
+- This will help maintain better context and progress tracking for future development
+- Aligns with the goal of comprehensive session documentation
+
+**Current Status**: Documentation guidelines clarified. Ready to continue with development work.
+
+---
+
 ### Complete Day 4 Grammar Checking Implementation and Documentation Update
 
 **Request**: Continue with Day 4 implementation and update documentation to reflect current project status.

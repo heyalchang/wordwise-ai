@@ -1,4 +1,5 @@
 # Cursor Rules – WordWise AI
+# Shared guard-rails for every developer.
 
 ## 🔒 Machine-managed / DO-NOT-EDIT
 CLAUDE.md
@@ -9,24 +10,27 @@ docs/Day-*-Complete.md
 
 ## 📝 Developer scratch space
 SUPRISES-CURSOR.md        # team-authored discoveries / blockers
+docs/Cursor-Day-*-Complete.md  # developer-authored daily summaries (Claude will ignore)
+
+# Cursor Rules – WordWise AI
 
 ## 🛠 Coding conventions
-- TS strict; `npm run typecheck` before push.
+- TypeScript strict mode; run `npm run typecheck` before push.
 - Lint & format (`npm run lint`) must pass.
-- React functional components + hooks.
-- Tailwind only; no inline styles / CSS-modules.
-- Zustand for global state.
+- React = functional components + hooks only.
+- Styling via Tailwind; no inline styles / CSS-modules.
+- Global state via Zustand; prefer local state otherwise.
 
 ## 🚀 Workflow
-- Small, descriptive commits; push only when `lint`, `typecheck`, `build` succeed.
-- CI must stay green; never force-push `main`.
+- Small, descriptive commits; push only when `lint`, `typecheck`, `build` all succeed.
+- CI (`.github/workflows/ci.yml`) must stay green; never force-push `main`.
 - Vercel deploys automatically from `main`.
 
 ## 🌐 Edge functions
-Source in `supabase/functions/<name>.ts`; deploy with `supabase functions deploy <name>`.
+Source in `supabase/functions/<name>.ts`; deploy with `supabase functions deploy <name>` and commit manifest.
 
-## 🔑 Env vars (dev & CI)
+## 🔑 Required env vars
 VITE_SUPABASE_URL  
 VITE_SUPABASE_ANON_KEY  
 LANGUAGETOOL_API_URL  
-OPENAI_API_KEY
+OPENAI_API_KEY  # Phase 2

@@ -25,5 +25,24 @@
 3. SQL migrations: `profiles`, `documents`, `suggestions` with RLS.
 4. Scaffold `pages/dashboard.tsx` listing user docs.
 
+## 2025-06-16 – Catch-up sync
+
+### New code since initial snapshot
+- Supabase client bootstrap (`src/lib/supabase.ts`) with typed interfaces.
+- Auth flow in place: `AuthContext`, `Login`, `Dashboard`, `EditorPage` with route guards.
+- Editor stack complete: `Editor.tsx` (Tiptap + toolbar) + autosave via `useDocStore` & `useDebounce`.
+- Grammar pipeline delivered:
+  - Edge function `supabase/functions/grammar_check` → LanguageTool → `suggestions` table.
+  - Hook `useGrammarCheck` + realtime channel.
+  - UI: coloured underlines & `SuggestionPopover` (apply / ignore).
+- Repo hygiene: `.cursorrules` and `SUPRISES-CURSOR.md` added; CI green, Vercel preview builds.
+
+### Immediate next tasks
+1. Build `readability` edge function (+ `ReadabilityMeter` component).
+2. Implement `export_docx` flow and download button.
+3. Position popovers at caret, ESC-dismiss; add bulk actions.
+4. Cypress E2E happy-path and add to CI.
+5. Documentation: create `docs/Cursor-Day-4-Complete.md` at EOD.
+
 ---
 (Add new dated sections below for future analysis.) 
