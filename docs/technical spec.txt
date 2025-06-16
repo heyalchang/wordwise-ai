@@ -1,0 +1,175 @@
+Phase 1 Technical Plan – WordWise AI
+
+Target: ESL college-essay student (Student → ESL learner niche)
+Core sprint window: 7 calendar days (Mon → Sun)
+
+⸻
+
+1 · Feature & Story Selection
+
+#	Core User Story (ESL student)	Phase-1 scope
+1	“As an ESL student, I get red-underline grammar & spelling mistakes while I type.”	Real-time LanguageTool check + underlines
+2	“I can click an underline to see suggested corrections and apply one.”	Pop-over with alternatives, click-to-replace
+3	“I can see a readability meter (Flesch & passive-voice %) update live.”	Client-side text-stat + LanguageTool style
+4	“My drafts are saved automatically and I can reopen them later.”	Supabase documents table + Row Level Security
+5	“I sign in with Google to access my documents.”	Supabase OAuth flow
+6	“I can download my corrected text as a .docx.”	Edge Function → docx package → signed URL
+
+(Stories 1-3 satisfy AI requirements; 4-6 satisfy app & deployment requirements.)
+
+⸻
+
+2 · High-Level Architecture
+
+┌───────────────┐           HTTPS           ┌────────────────────────┐
+│ React 18 SPA  │◀──────── websocket ─────▶│  Supabase Realtime     │
+│  (Vite build) │                           │  (Postgres LISTEN)     │
+└──────┬────────┘                           └──────┬─────────────────┘
+       │ REST (Edge)                                │
+       │                                            ▼
+       │                          ┌──────────────────────────┐
+       │  Edge Function (Rust Deno)  grammar_check()        │
+       ├──────────────────────────▶│  fetch LanguageTool API │
+       │                           │  store suggestions      │
+       │                           └──────────┬──────────────┘
+       │                                      ▼
+       ▼                          ┌──────────────────────────┐
+┌───────────────────┐             │  PostgreSQL (Supabase)   │
+│ Vercel Static CDN │             │  - profiles              │
+│  (Next → /dist)   │             │  - documents             │
+└───────────────────┘             │  - suggestions           │
+                                  └──────────────────────────┘
+
+
+⸻
+
+3 · Supabase Schema (SQL)
+
+-- profiles
+create table profiles (
+  id uuid primary key references auth.users on delete cascade,
+  display_name text,
+  locale text default 'en-US',
+  writing_goals jsonb,
+  created_at timestamptz default now()
+);
+
+-- documents
+create table documents (
+  id uuid primary key default gen_random_uuid(),
+  owner uuid references profiles(id),
+  title text,
+  content text,
+  readability jsonb,        -- flesch_score, passive_pct
+  updated_at timestamptz default now(),
+  created_at timestamptz default now()
+);
+
+-- suggestions
+create table suggestions (
+  id bigint generated always as identity primary key,
+  doc_id uuid references documents(id) on delete cascade,
+  start int,                -- character offset
+  end int,
+  type text,                -- grammar, style, spelling
+  message text,
+  replacements jsonb,
+  created_at timestamptz default now()
+);
+
+-- Row-level security
+alter table documents enable row level security;
+create policy "owner can CRUD" on documents
+  for all using (auth.uid() = owner);
+
+alter table suggestions enable row level security;
+create policy "owner suggestions" on suggestions
+  for all using (exists (select 1
+                         from documents d
+                         where d.id = doc_id and d.owner = auth.uid()));
+
+
+⸻
+
+4 · Edge Functions
+
+File	Purpose	Flow
+grammar_check.ts	POST {docId, text} → LanguageTool /check	• Call public LanguageTool• Transform matches → rows• insert … into suggestions
+readability.ts	POST {docId, text} → returns JSON	• Compute Flesch & passive voice locally (small JS libs)
+export_docx.ts	POST {docId} → presigned URL	• Pull latest content• Create .docx with docx npm• Upload to Supabase Storage, return URL
+
+All functions deploy via Supabase Edge Runtime (Deno); secrets (LT_API_URL, OPENAI_KEY for future phase) set in project settings.
+
+⸻
+
+5 · Frontend Modules
+
+Path	Responsibility	Key libs
+src/editor/Editor.tsx	Tiptap instance, debounced grammar_check call, highlight extension	@tiptap/react, @tiptap/extension-highlight
+src/store/useDocStore.ts	Zustand slice for active doc state	zustand, immer
+src/components/SuggestionPopover.tsx	Pop-over at underline, apply replacement	@headlessui/react, Tailwind
+src/components/ReadabilityMeter.tsx	Live gauge (Flesch, passive%)	react-spring or SVG
+src/pages/dashboard.tsx	List of docs (supabase.from('documents'))	—
+src/pages/editor/[id].tsx	Auth guard → load doc → Editor	react-router-dom
+
+
+⸻
+
+6 · Dev-Ops / Scripts
+	•	Vite config – aliases, env vars (import.meta.env.VITE_SUPABASE_URL etc.).
+	•	Linting / Formatting – ESLint + Prettier + Typescript strict.
+	•	CI (GitHub Actions) – on push: type-check, run basic Cypress smoke, deploy preview to Vercel.
+	•	Production – Vercel project with Supabase environment variables; automatic preview-branch URLs for demo video.
+
+⸻
+
+7 · Day-by-Day Execution
+
+Day	Deliverable	Checklist
+1	Repo init & cloud infra	npx create-vite@latest wordwise-ai, Tailwind, ESLint; create Supabase project; commit CI pipeline
+2	Auth & DB	Supabase Google OAuth; tables + RLS; Dashboard page lists docs
+3	Tiptap editor & autosave	Debounced updateDoc RPC; responsive layout
+4	Edge grammar_check + underlines	Highlight decoration, pop-over suggestions (apply)
+5	Readability meter & passive-voice %	Live meter component; update on editor change
+6	Export to DOCX & polishing	export_docx function, button in UI; dark mode
+7	QA, seed data, record 5-min demo	Cypress happy-path, video capture, write "Second Brain" doc
+
+
+⸻
+
+8 · Key Packages & Versions
+
+Purpose	Package	Version
+Editor	@tiptap/react	^2.3
+Grammar API	external REST (no npm)	—
+Readability	text-statistics	latest
+DOCX export	docx	^9
+State	zustand	^4
+Supabase client	@supabase/supabase-js	^2
+Build	vite	^5
+Typescript	typescript	^5.4
+
+
+⸻
+
+9 · Environment Variables (Vercel)
+
+SUPABASE_URL=
+SUPABASE_ANON_KEY=
+LT_API_URL=https://api.languagetool.org/v2/check
+LT_AUTH_TOKEN=   # if premium later
+NEXT_PUBLIC_APP_NAME=WordWise AI
+
+
+⸻
+
+10 · Stretch-Ready Hooks (Phase 2)
+	•	OpenAI Gateway: wrapper function in Edge runtime (askLLM.ts) already scaffolded but unused.
+	•	User personalization: extend profiles with weakness_stats jsonb.
+	•	Realtime suggestions: enable Postgres realtime on suggestions channel → push updates without polling.
+
+⸻
+
+✅ Outcome
+
+Following this plan delivers a fully deployed, ESL-focused Grammarly clone fulfilling the PRD's Phase 1 criteria in seven days, with Supabase providing auth, storage, realtime, and edge execution—leaving the team free to focus Phase 2 on AI-powered personalization rather than infrastructure rewrites.
