@@ -181,3 +181,4 @@ When implementing features:
 - When something surprising happens, write into Surprises.md what we expected to happen and what we discovered. This will be used for long-term learning so we work even more efficiently in the future.
 - As each day's work is completed, document that it is complete and what we did with a document in the docs folder
 - Nothing is deleted from the CONVERSATION.md log.  New entries are entered on top and the older entries are pushed down.
+- commit after any major changes.  absolutely after a day's work is done.
