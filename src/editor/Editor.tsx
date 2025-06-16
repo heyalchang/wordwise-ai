@@ -13,8 +13,8 @@ import './Editor.css';
 interface Suggestion {
   id: number;
   doc_id: string;
-  start_pos: number;
-  end_pos: number;
+  start: number;
+  end: number;
   type: string;
   message: string;
   replacements: string[];
@@ -106,7 +106,24 @@ export function Editor({
 
   const clearHighlights = useCallback(() => {
     if (!editor) return;
-    editor.chain().focus().unsetHighlight().run();
+
+    // Iterate through the document and remove all highlight marks
+    const { doc } = editor.state;
+    const tr = editor.state.tr;
+
+    doc.descendants((node, pos) => {
+      if (node.marks) {
+        node.marks.forEach((mark) => {
+          if (mark.type.name === 'highlight') {
+            tr.removeMark(pos, pos + node.nodeSize, mark.type);
+          }
+        });
+      }
+    });
+
+    if (tr.steps.length > 0) {
+      editor.view.dispatch(tr);
+    }
   }, [editor]);
 
   const handleApplySuggestion = useCallback(
@@ -121,8 +138,8 @@ export function Editor({
         .chain()
         .focus()
         .setTextSelection({
-          from: suggestion.start_pos,
-          to: suggestion.end_pos,
+          from: suggestion.start,
+          to: suggestion.end,
         })
         .insertContent(replacement)
         .run();
@@ -147,11 +164,7 @@ export function Editor({
 
     // Apply new highlights for each suggestion
     suggestions.forEach((suggestion) => {
-      setGrammarHighlight(
-        suggestion.start_pos,
-        suggestion.end_pos,
-        suggestion.type
-      );
+      setGrammarHighlight(suggestion.start, suggestion.end, suggestion.type);
     });
   }, [editor, suggestions, setGrammarHighlight, clearHighlights]);
 

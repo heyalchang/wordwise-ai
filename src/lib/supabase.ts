@@ -36,8 +36,8 @@ export interface Document {
 export interface Suggestion {
   id: number;
   doc_id: string;
-  start_pos: number;
-  end_pos: number;
+  start: number;
+  end: number;
   type: string;
   message: string;
   replacements: string[];

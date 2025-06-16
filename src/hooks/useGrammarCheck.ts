@@ -1,12 +1,13 @@
 import { useCallback, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
 import { useDebounce } from './useDebounce';
+import { getEditorTextAndMapping } from '../utils/offsetMapping';
 
 interface Suggestion {
   id: number;
   doc_id: string;
-  start_pos: number;
-  end_pos: number;
+  start: number;
+  end: number;
   type: string;
   message: string;
   replacements: string[];
@@ -22,16 +23,20 @@ export function useGrammarCheck({
   onSuggestionsUpdate,
 }: GrammarCheckHookProps) {
   const checkGrammar = useCallback(
-    async (text: string) => {
-      if (!text || text.length < 10) return; // Skip very short text
+    async (htmlText: string) => {
+      if (!htmlText || htmlText.length < 10) return; // Skip very short text
 
       try {
+        // Get plain text and offset mapping
+        const { plainText } = getEditorTextAndMapping(htmlText);
+
         const { data, error } = await supabase.functions.invoke(
           'grammar_check',
           {
             body: {
               docId: documentId,
-              text: text.replace(/<[^>]*>/g, ''), // Strip HTML tags for LanguageTool
+              text: plainText, // Send plain text to LanguageTool
+              htmlText, // Also send HTML for server-side mapping if needed
             },
           }
         );
@@ -41,6 +46,8 @@ export function useGrammarCheck({
           return;
         }
 
+        // The Edge Function now handles offset mapping on the server side
+        // so suggestions should already have correct HTML offsets
         if (onSuggestionsUpdate && data?.suggestions) {
           onSuggestionsUpdate(data.suggestions);
         }
@@ -61,7 +68,7 @@ export function useGrammarCheck({
         .from('suggestions')
         .select('*')
         .eq('doc_id', documentId)
-        .order('start_pos', { ascending: true });
+        .order('start', { ascending: true });
 
       if (!error && data && onSuggestionsUpdate) {
         onSuggestionsUpdate(data);

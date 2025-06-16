@@ -23,6 +23,40 @@ interface LanguageToolResponse {
   matches: LanguageToolMatch[];
 }
 
+// Offset mapping utilities for HTML to text conversion
+function createOffsetMapping(html: string): {
+  textToHtml: Map<number, number>;
+} {
+  const textToHtml = new Map<number, number>();
+  let textIndex = 0;
+  let inTag = false;
+
+  for (let i = 0; i < html.length; i++) {
+    const char = html[i];
+
+    if (char === '<') {
+      inTag = true;
+    } else if (char === '>' && inTag) {
+      inTag = false;
+      continue;
+    }
+
+    if (!inTag) {
+      textToHtml.set(textIndex, i);
+      textIndex++;
+    }
+  }
+
+  return { textToHtml };
+}
+
+function mapTextOffsetToHtml(
+  textOffset: number,
+  mapping: Map<number, number>
+): number {
+  return mapping.get(textOffset) ?? textOffset;
+}
+
 serve(async (req) => {
   // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
@@ -30,13 +64,20 @@ serve(async (req) => {
   }
 
   try {
-    const { docId, text } = await req.json();
+    const { docId, text, htmlText } = await req.json();
 
     if (!docId || !text) {
       return new Response(JSON.stringify({ error: 'Missing docId or text' }), {
         status: 400,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
+    }
+
+    // Create offset mapping if HTML text is provided
+    let offsetMapping: Map<number, number> | null = null;
+    if (htmlText) {
+      const mapping = createOffsetMapping(htmlText);
+      offsetMapping = mapping.textToHtml;
     }
 
     // Call LanguageTool API
@@ -70,14 +111,24 @@ serve(async (req) => {
     await supabase.from('suggestions').delete().eq('doc_id', docId);
 
     // Transform LanguageTool matches to suggestions
-    const suggestions = languageToolData.matches.map((match) => ({
-      doc_id: docId,
-      start_pos: match.offset,
-      end_pos: match.offset + match.length,
-      type: getSuggestionType(match.rule.category.id),
-      message: match.message,
-      replacements: match.replacements.map((r) => r.value),
-    }));
+    const suggestions = languageToolData.matches.map((match) => {
+      // Map text offsets back to HTML offsets if mapping is available
+      const htmlStart = offsetMapping
+        ? mapTextOffsetToHtml(match.offset, offsetMapping)
+        : match.offset;
+      const htmlEnd = offsetMapping
+        ? mapTextOffsetToHtml(match.offset + match.length, offsetMapping)
+        : match.offset + match.length;
+
+      return {
+        doc_id: docId,
+        start: htmlStart,
+        end: htmlEnd,
+        type: getSuggestionType(match.rule.category.id),
+        message: match.message,
+        replacements: match.replacements.map((r) => r.value),
+      };
+    });
 
     // Insert new suggestions
     if (suggestions.length > 0) {

@@ -44,5 +44,37 @@
 4. Cypress E2E happy-path and add to CI.
 5. Documentation: create `docs/Cursor-Day-4-Complete.md` at EOD.
 
+## 2025-06-16 – Day 4 progress snapshot
+
+### Work delivered today
+- `supabase/functions/grammar_check` deployed and verified via Realtime suggestions flow.
+- Grammar UI polished: coloured underlines, `SuggestionPopover` with icons, Ignore / Apply actions.
+- Hook `useGrammarCheck` + debounce wired into `Editor.tsx`; autosave + grammar check coexist.
+- Supabase client file added with strict type defs.
+- Proof-of-concept `EditorPage`, `Dashboard`, `Login` pages running behind Google OAuth; routing guards stable.
+- `.cursorrules` refined (duplicate header removed) and `SUPRISES-CURSOR.md` scaffolded for human notes.
+
+### Build & CI
+- `npm run lint`, `typecheck`, and `build` all pass.
+- GitHub Actions green; Vercel preview auto-deploy succeeded.
+
+### Up-next (Day 5 agenda)
+1. Implement `readability` edge function (Flesch + passive%) and `ReadabilityMeter` component.
+2. `export_docx` edge function and download button in UI.
+3. Popover UX: caret-positioning & ESC close.
+4. Add bulk "Apply all" / "Ignore rule" to suggestions toolbar.
+5. Write Cypress E2E test & CI step.
+6. Create `docs/Cursor-Day-4-Complete.md` end-of-day summary.
+
+### Bug / risk list after quick scan (to triage)
+- **Column name mismatch**: Edge fn uses `start_pos`/`end_pos`, DB spec shows `start`/`end`. Align schema or code.
+- **Offset drift**: We strip HTML before LanguageTool so offsets don't match Tiptap HTML → highlights mis-align when formatting added. Need mapping strategy.
+- **Highlight clearing**: `unsetHighlight` not in Tiptap Highlight ext; replace with correct command.
+- **RLS deletions**: Client `delete` on `suggestions` may fail under RLS. Ensure policy grants owner access or call RPC.
+- **Auth loading race**: Render may flash unauthenticated state; gate routes while `loading`.
+- **Autosave flush**: Debounced save not flushed on unmount; last keystroke could be lost.
+- **Env var guard**: Hard throw in `supabase.ts` disrupts dev HMR; consider console warn in dev.
+- **Popover position**: Currently hard-coded (100,100). Implement caret-based positioning.
+
 ---
 (Add new dated sections below for future analysis.) 

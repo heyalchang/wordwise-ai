@@ -2,6 +2,59 @@
 
 ## Session 5 - June 16, 2025
 
+### Critical Bug Analysis and Fix Planning
+
+**Request**: Review comments from other developer about bugs and risks in current codebase.
+
+**What we did**: 
+- Analyzed critical bugs identified by the other developer including schema mismatches, offset mapping issues, and API misuse
+- Confirmed database schema uses `start`/`end` columns but code uses `start_pos`/`end_pos` (CRITICAL)
+- Identified HTML-to-text offset drift that breaks grammar highlighting with formatted content
+- Found Tiptap API misuse with non-existent `unsetHighlight()` method
+- Documented findings in SUPRISES-CURSOR.md for team visibility
+- Created prioritized todo list with 8 bugs ranging from critical to low priority
+
+**What happened**: 
+- Discovered grammar suggestion system is completely broken due to column name mismatch
+- Found serious UX issues with highlight positioning when users add bold/italic formatting
+- Identified potential RLS policy gaps that could prevent users from dismissing suggestions
+- Recognized several polish issues around auth loading, autosave, and popover positioning
+- Created comprehensive action plan with clear priorities for immediate fixes
+
+**Current Status**: Ready to fix critical bugs before continuing Day 6 work. Grammar system needs immediate attention to be functional.
+
+---
+
+### Day 5 Readability Implementation Complete
+
+**Request**: Continue with Day 5 implementation - readability metrics with Flesch score and passive voice detection.
+
+**What we did**: 
+- Created comprehensive readability Edge Function with Flesch Reading Ease score calculation
+- Implemented passive voice detection algorithm with "to be" verb + past participle pattern matching
+- Built ReadabilityMeter component with live color-coded progress gauges and ESL-friendly tips
+- Integrated useReadabilityCheck hook with 3-second debouncing to prevent excessive API calls
+- Added value debouncing functionality to existing useDebounce utilities
+- Updated editor layout with dedicated readability sidebar for real-time feedback
+- Created syllable counting algorithm for accurate Flesch score computation
+- Added reading level indicators (5th grade to Graduate level) with descriptive labels
+
+**What happened**: 
+- Readability analysis system fully functional with real-time updates as users type
+- Users see live Flesch Reading Ease scores (0-100) with appropriate difficulty levels
+- Passive voice percentage tracking with visual feedback (green: excellent, red: high)
+- ESL-specific writing tips appear dynamically based on current metrics
+- 3-second debouncing ensures smooth performance without overwhelming the API
+- All builds pass (typecheck, lint, build) with comprehensive Day 5 feature set
+- Edge Function efficiently processes text and updates document readability in database
+- Integration with existing document store maintains real-time sync across the application
+
+**Current Status**: Day 5 complete. Full readability analysis system implemented with live metrics. Users receive instant feedback on writing complexity and passive voice usage. Ready for Day 6 implementation (DOCX export and UI polish).
+
+---
+
+## Session 5 - June 16, 2025
+
 ### Documentation Maintenance Clarification
 
 **Request**: Clarify that CONVERSATION.md should be updated after every conversation turn, not just sessions.

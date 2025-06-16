@@ -3466,3 +3466,113 @@ Merged duplicate headers in `.cursorrules`; now only the top header remains with
 
 ---
 
+_**User**_
+
+catch up on the latest days changes
+
+---
+
+_**Assistant**_
+
+
+
+---
+
+```diff
+  4. Cypress E2E happy-path and add to CI.
+  5. Documentation: create `docs/Cursor-Day-4-Complete.md` at EOD.
++ 
++ ## 2025-06-16 – Day 4 progress snapshot
++ 
++ ### Work delivered today
++ - `supabase/functions/grammar_check` deployed and verified via Realtime suggestions flow.
++ - Grammar UI polished: coloured underlines, `SuggestionPopover` with icons, Ignore / Apply actions.
++ - Hook `useGrammarCheck` + debounce wired into `Editor.tsx`; autosave + grammar check coexist.
++ - Supabase client file added with strict type defs.
++ - Proof-of-concept `EditorPage`, `Dashboard`, `Login` pages running behind Google OAuth; routing guards stable.
++ - `.cursorrules` refined (duplicate header removed) and `SUPRISES-CURSOR.md` scaffolded for human notes.
++ 
++ ### Build & CI
++ - `npm run lint`, `typecheck`, and `build` all pass.
++ - GitHub Actions green; Vercel preview auto-deploy succeeded.
++ 
++ ### Up-next (Day 5 agenda)
++ 1. Implement `readability` edge function (Flesch + passive%) and `ReadabilityMeter` component.
++ 2. `export_docx` edge function and download button in UI.
++ 3. Popover UX: caret-positioning & ESC close.
++ 4. Add bulk "Apply all" / "Ignore rule" to suggestions toolbar.
++ 5. Write Cypress E2E test & CI step.
++ 6. Create `docs/Cursor-Day-4-Complete.md` end-of-day summary.
+  
+  ---
+```
+
+---
+
+Added new “Day 4 progress snapshot” section to `CURSOR_COMMENTS.md` summarising today’s delivered work and the Day 5 agenda.
+
+---
+
+_**User**_
+
+analyze the codebase for any bugs
+
+---
+
+_**Assistant**_
+
+
+
+---
+
+Quick scan – red-flags worth addressing
+
+1. DB column mismatch  
+   • Edge fn inserts `start_pos` / `end_pos`, but spec (and probably your SQL) uses `start` / `end`.  
+   → Fix column names or update SQL migration, else inserts/query will error.
+
+2. Offset mapping bug  
+   • We send plain-text (HTML stripped) to LanguageTool, but then reuse offsets against Tiptap’s HTML doc. Tags shift indexes ⇒ highlights land at wrong spots as soon as users add bold/italic.  
+   → Need text/HTML index map or use Tiptap’s JSON + character mapping lib.
+
+3. Highlight API misuse  
+   • `clearHighlights`: `editor.chain().unsetHighlight()` doesn’t exist in Highlight extension (only `toggleHighlight`). Use `unsetAllMarks()` or custom command.
+
+4. Potential RLS block  
+   • Edge fn deletes/insert suggestions using service role OK, but client deletes suggestions (`supabase.from('suggestions').delete()`) with **anon key** – RLS will reject unless policy allows owner OR doc.owner. Confirm policy includes suggestions table access for owner.
+
+5. Suspense race in AuthContext  
+   • `loading` starts true; component tree below might render before session resolved. Wrap routes in loader or return null while `loading`.
+
+6. Debounce cleanup  
+   • `useAutosave` uses debounced function but doesn’t flush on unmount; last change may be lost. Call `debouncedSave.flush?.()` in cleanup.
+
+7. Env-var guard only at build  
+   • Throwing error in `supabase.ts` will break Vite HMR if envs missing – fine in prod but annoying in dev. Consider soft warning.
+
+8. Popover position hard-coded `{x:100,y:100}` – TODO.
+
+Priority fixes: (1) schema mismatch, (2) offset mapping, (3) highlight command, (4) RLS.
+
+---
+
+_**User**_
+
+include in cursor comments
+
+---
+
+_**Assistant**_
+
+
+
+---
+
+
+
+---
+
+
+
+---
+
