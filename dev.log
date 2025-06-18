@@ -1,0 +1,451 @@
+
+> wordwise-ai@0.0.0 dev
+> vite --port 5173
+
+
+  VITE v6.3.5  ready in 5157 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
+7:02:41 PM [vite] (client) hmr update /src/pages/EditorPage.tsx, /src/index.css, /src/editor/Editor.tsx
+7:03:17 PM [vite] (client) hmr update /src/pages/Dashboard.tsx, /src/index.css, /src/pages/EditorPage.tsx
+7:03:34 PM [vite] (client) hmr update /src/index.css, /src/editor/Editor.tsx
+7:03:34 PM [vite] (client) hmr update /src/index.css, /src/editor/Editor.tsx
+7:04:00 PM [vite] (client) hmr update /src/editor/Editor.tsx, /src/index.css
+7:04:15 PM [vite] (client) hmr update /src/index.css, /src/editor/Editor.tsx
+7:23:33 PM [vite] (client) hmr update /src/pages/EditorPage.tsx, /src/index.css, /src/editor/Editor.tsx
+7:23:33 PM [vite] (client) hmr update /src/pages/Dashboard.tsx, /src/index.css, /src/pages/EditorPage.tsx
+7:23:33 PM [vite] (client) hmr update /src/pages/EditorPage.tsx, /src/index.css
+7:23:33 PM [vite] (client) Pre-transform error: Transform failed with 1 error:
+/Users/alchang/Documents/CursorProjects/gaunlet/src/hooks/useDebounce.ts:2:0: ERROR: Unterminated string literal
+  Plugin: vite:esbuild
+  File: /Users/alchang/Documents/CursorProjects/gaunlet/src/hooks/useDebounce.ts:2:0
+  
+  Unterminated string literal
+  1  |  ```
+  2  |  
+     |  ^
+  
+7:23:33 PM [vite] (client) Pre-transform error: Transform failed with 1 error:
+/Users/alchang/Documents/CursorProjects/gaunlet/src/hooks/useDebounce.ts:2:0: ERROR: Unterminated string literal
+  Plugin: vite:esbuild
+  File: /Users/alchang/Documents/CursorProjects/gaunlet/src/hooks/useDebounce.ts:2:0
+  
+  Unterminated string literal
+  1  |  ```
+  2  |  
+     |  ^
+  
+7:23:33 PM [vite] Internal server error: Transform failed with 1 error:
+/Users/alchang/Documents/CursorProjects/gaunlet/src/hooks/useDebounce.ts:2:0: ERROR: Unterminated string literal
+  Plugin: vite:esbuild
+  File: /Users/alchang/Documents/CursorProjects/gaunlet/src/hooks/useDebounce.ts:2:0
+  
+  Unterminated string literal
+  1  |  ```
+  2  |  
+     |  ^
+  
+      at failureErrorWithLog (/Users/alchang/Documents/CursorProjects/gaunlet/node_modules/esbuild/lib/main.js:1463:15)
+      at /Users/alchang/Documents/CursorProjects/gaunlet/node_modules/esbuild/lib/main.js:734:50
+      at responseCallbacks.<computed> (/Users/alchang/Documents/CursorProjects/gaunlet/node_modules/esbuild/lib/main.js:601:9)
+      at handleIncomingPacket (/Users/alchang/Documents/CursorProjects/gaunlet/node_modules/esbuild/lib/main.js:656:12)
+      at Socket.readFromStdout (/Users/alchang/Documents/CursorProjects/gaunlet/node_modules/esbuild/lib/main.js:579:7)
+      at Socket.emit (node:events:507:28)
+      at addChunk (node:internal/streams/readable:559:12)
+      at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+      at Readable.push (node:internal/streams/readable:390:5)
+      at Pipe.onStreamRead (node:internal/stream_base_commons:189:23)
+7:23:33 PM [vite] (client) Pre-transform error: Transform failed with 1 error:
+/Users/alchang/Documents/CursorProjects/gaunlet/src/store/useDocStore.ts:2:0: ERROR: Unterminated string literal
+  Plugin: vite:esbuild
+  File: /Users/alchang/Documents/CursorProjects/gaunlet/src/store/useDocStore.ts:2:0
+  
+  Unterminated string literal
+  1  |  ```
+  2  |  
+     |  ^
+  
+7:23:33 PM [vite] Internal server error: Transform failed with 1 error:
+/Users/alchang/Documents/CursorProjects/gaunlet/src/store/useDocStore.ts:2:0: ERROR: Unterminated string literal
+  Plugin: vite:esbuild
+  File: /Users/alchang/Documents/CursorProjects/gaunlet/src/store/useDocStore.ts:2:0
+  
+  Unterminated string literal
+  1  |  ```
+  2  |  
+     |  ^
+  
+      at failureErrorWithLog (/Users/alchang/Documents/CursorProjects/gaunlet/node_modules/esbuild/lib/main.js:1463:15)
+      at /Users/alchang/Documents/CursorProjects/gaunlet/node_modules/esbuild/lib/main.js:734:50
+      at responseCallbacks.<computed> (/Users/alchang/Documents/CursorProjects/gaunlet/node_modules/esbuild/lib/main.js:601:9)
+      at handleIncomingPacket (/Users/alchang/Documents/CursorProjects/gaunlet/node_modules/esbuild/lib/main.js:656:12)
+      at Socket.readFromStdout (/Users/alchang/Documents/CursorProjects/gaunlet/node_modules/esbuild/lib/main.js:579:7)
+      at Socket.emit (node:events:507:28)
+      at addChunk (node:internal/streams/readable:559:12)
+      at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+      at Readable.push (node:internal/streams/readable:390:5)
+      at Pipe.onStreamRead (node:internal/stream_base_commons:189:23)
+7:24:14 PM [vite] Internal server error: Transform failed with 1 error:
+/Users/alchang/Documents/CursorProjects/gaunlet/src/store/useDocStore.ts:2:0: ERROR: Unterminated string literal
+  Plugin: vite:esbuild
+  File: /Users/alchang/Documents/CursorProjects/gaunlet/src/store/useDocStore.ts:2:0
+  
+  Unterminated string literal
+  1  |  ```
+  2  |  
+     |  ^
+  
+      at failureErrorWithLog (/Users/alchang/Documents/CursorProjects/gaunlet/node_modules/esbuild/lib/main.js:1463:15)
+      at /Users/alchang/Documents/CursorProjects/gaunlet/node_modules/esbuild/lib/main.js:734:50
+      at responseCallbacks.<computed> (/Users/alchang/Documents/CursorProjects/gaunlet/node_modules/esbuild/lib/main.js:601:9)
+      at handleIncomingPacket (/Users/alchang/Documents/CursorProjects/gaunlet/node_modules/esbuild/lib/main.js:656:12)
+      at Socket.readFromStdout (/Users/alchang/Documents/CursorProjects/gaunlet/node_modules/esbuild/lib/main.js:579:7)
+      at Socket.emit (node:events:507:28)
+      at addChunk (node:internal/streams/readable:559:12)
+      at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+      at Readable.push (node:internal/streams/readable:390:5)
+      at Pipe.onStreamRead (node:internal/stream_base_commons:189:23)
+7:24:29 PM [vite] (client) hmr update /src/App.tsx, /src/index.css, /src/editor/Editor.tsx
+7:24:29 PM [vite] Internal server error: Transform failed with 1 error:
+/Users/alchang/Documents/CursorProjects/gaunlet/src/store/useDocStore.ts:2:0: ERROR: Unterminated string literal
+  Plugin: vite:esbuild
+  File: /Users/alchang/Documents/CursorProjects/gaunlet/src/store/useDocStore.ts:2:0
+  
+  Unterminated string literal
+  1  |  ```
+  2  |  
+     |  ^
+  
+      at failureErrorWithLog (/Users/alchang/Documents/CursorProjects/gaunlet/node_modules/esbuild/lib/main.js:1463:15)
+      at /Users/alchang/Documents/CursorProjects/gaunlet/node_modules/esbuild/lib/main.js:734:50
+      at responseCallbacks.<computed> (/Users/alchang/Documents/CursorProjects/gaunlet/node_modules/esbuild/lib/main.js:601:9)
+      at handleIncomingPacket (/Users/alchang/Documents/CursorProjects/gaunlet/node_modules/esbuild/lib/main.js:656:12)
+      at Socket.readFromStdout (/Users/alchang/Documents/CursorProjects/gaunlet/node_modules/esbuild/lib/main.js:579:7)
+      at Socket.emit (node:events:507:28)
+      at addChunk (node:internal/streams/readable:559:12)
+      at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+      at Readable.push (node:internal/streams/readable:390:5)
+      at Pipe.onStreamRead (node:internal/stream_base_commons:189:23)
+7:24:32 PM [vite] (client) hmr update /src/App.tsx, /src/index.css, /src/editor/Editor.tsx
+7:24:32 PM [vite] Internal server error: Transform failed with 1 error:
+/Users/alchang/Documents/CursorProjects/gaunlet/src/store/useDocStore.ts:2:0: ERROR: Unterminated string literal
+  Plugin: vite:esbuild
+  File: /Users/alchang/Documents/CursorProjects/gaunlet/src/store/useDocStore.ts:2:0
+  
+  Unterminated string literal
+  1  |  ```
+  2  |  
+     |  ^
+  
+      at failureErrorWithLog (/Users/alchang/Documents/CursorProjects/gaunlet/node_modules/esbuild/lib/main.js:1463:15)
+      at /Users/alchang/Documents/CursorProjects/gaunlet/node_modules/esbuild/lib/main.js:734:50
+      at responseCallbacks.<computed> (/Users/alchang/Documents/CursorProjects/gaunlet/node_modules/esbuild/lib/main.js:601:9)
+      at handleIncomingPacket (/Users/alchang/Documents/CursorProjects/gaunlet/node_modules/esbuild/lib/main.js:656:12)
+      at Socket.readFromStdout (/Users/alchang/Documents/CursorProjects/gaunlet/node_modules/esbuild/lib/main.js:579:7)
+      at Socket.emit (node:events:507:28)
+      at addChunk (node:internal/streams/readable:559:12)
+      at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+      at Readable.push (node:internal/streams/readable:390:5)
+      at Pipe.onStreamRead (node:internal/stream_base_commons:189:23)
+7:24:57 PM [vite] (client) hmr update /src/App.tsx, /src/index.css, /src/editor/Editor.tsx
+7:24:57 PM [vite] (client) hmr update /src/pages/Dashboard.tsx, /src/index.css, /src/App.tsx
+7:24:57 PM [vite] (client) hmr update /src/App.tsx, /src/index.css
+7:25:01 PM [vite] (client) hmr update /src/pages/EditorPage.tsx, /src/index.css
+7:25:01 PM [vite] (client) hmr update /src/pages/EditorPage.tsx, /src/index.css, /src/editor/Editor.tsx
+7:25:01 PM [vite] (client) hmr update /src/pages/Dashboard.tsx, /src/index.css, /src/pages/EditorPage.tsx
+7:25:26 PM [vite] (client) hmr update /src/pages/EditorPage.tsx, /src/index.css, /src/editor/Editor.tsx
+7:25:26 PM [vite] (client) hmr update /src/pages/Dashboard.tsx, /src/index.css, /src/pages/EditorPage.tsx
+7:25:26 PM [vite] (client) hmr update /src/pages/EditorPage.tsx, /src/index.css
+7:25:28 PM [vite] (client) hmr update /src/pages/EditorPage.tsx, /src/index.css
+7:25:30 PM [vite] (client) hmr update /src/pages/Dashboard.tsx, /src/index.css, /src/pages/EditorPage.tsx
+7:25:31 PM [vite] (client) hmr update /src/pages/EditorPage.tsx, /src/index.css
+7:25:33 PM [vite] (client) hmr update /src/pages/EditorPage.tsx, /src/index.css
+7:25:34 PM [vite] (client) hmr update /src/pages/EditorPage.tsx, /src/index.css
+7:25:40 PM [vite] (client) hmr update /src/pages/Dashboard.tsx, /src/index.css, /src/pages/EditorPage.tsx
+7:25:41 PM [vite] (client) hmr update /src/pages/Dashboard.tsx, /src/index.css, /src/pages/EditorPage.tsx
+7:25:46 PM [vite] (client) hmr update /src/pages/EditorPage.tsx, /src/index.css, /src/editor/Editor.tsx
+7:25:53 PM [vite] (client) hmr update /src/pages/EditorPage.tsx, /src/index.css, /src/editor/Editor.tsx
+7:25:56 PM [vite] (client) hmr update /src/pages/EditorPage.tsx, /src/index.css, /src/editor/Editor.tsx
+7:25:57 PM [vite] (client) hmr update /src/pages/EditorPage.tsx, /src/index.css, /src/editor/Editor.tsx
+7:25:58 PM [vite] (client) hmr update /src/pages/EditorPage.tsx, /src/index.css, /src/editor/Editor.tsx
+7:26:08 PM [vite] (client) hmr update /src/pages/EditorPage.tsx, /src/index.css, /src/editor/Editor.tsx
+7:26:11 PM [vite] (client) hmr update /src/pages/EditorPage.tsx, /src/index.css, /src/editor/Editor.tsx
+7:26:11 PM [vite] (client) hmr update /src/pages/Dashboard.tsx, /src/index.css, /src/pages/EditorPage.tsx
+7:26:11 PM [vite] (client) hmr update /src/pages/EditorPage.tsx, /src/index.css
+7:26:18 PM [vite] (client) hmr update /src/pages/EditorPage.tsx, /src/index.css, /src/editor/Editor.tsx
+7:26:23 PM [vite] (client) hmr update /src/pages/Dashboard.tsx, /src/index.css, /src/pages/EditorPage.tsx
+7:26:26 PM [vite] (client) hmr update /src/pages/EditorPage.tsx, /src/index.css
+7:34:21 PM [vite] (client) page reload .claude/settings.local.json
+7:34:21 PM [vite] (client) hmr update /src/pages/EditorPage.tsx, /src/index.css, /src/editor/Editor.tsx
+7:34:25 PM [vite] (client) hmr update /src/pages/Dashboard.tsx, /src/index.css, /src/pages/EditorPage.tsx
+7:34:30 PM [vite] (client) hmr update /src/pages/Dashboard.tsx, /src/index.css, /src/pages/EditorPage.tsx
+7:34:30 PM [vite] (client) hmr update /src/pages/EditorPage.tsx, /src/index.css
+7:34:36 PM [vite] (client) hmr update /src/index.css, /src/editor/Editor.tsx
+7:34:42 PM [vite] (client) hmr update /src/index.css, /src/editor/Editor.tsx
+7:34:46 PM [vite] (client) hmr update /src/editor/Editor.tsx, /src/index.css
+7:34:52 PM [vite] (client) hmr update /src/components/SuggestionPopover.tsx, /src/index.css
+7:35:04 PM [vite] (client) hmr update /src/pages/EditorPage.tsx, /src/index.css, /src/editor/Editor.tsx
+7:36:11 PM [vite] (client) hmr update /src/pages/EditorPage.tsx, /src/index.css
+7:36:14 PM [vite] changed tsconfig file detected: /Users/alchang/Documents/CursorProjects/gaunlet/tsconfig.node.json - Clearing cache and forcing full-reload to ensure TypeScript is compiled with updated config values.
+7:36:14 PM [vite] (client) page reload tsconfig.node.json
+7:36:14 PM [vite] (client) page reload .github/workflows/ci.yml
+7:36:15 PM [vite] changed tsconfig file detected: /Users/alchang/Documents/CursorProjects/gaunlet/tsconfig.json - Clearing cache and forcing full-reload to ensure TypeScript is compiled with updated config values.
+7:36:15 PM [vite] (client) page reload tsconfig.json
+7:36:15 PM [vite] (client) page reload CONVERSATION.md
+7:36:15 PM [vite] (client) hmr update /src/components/SuggestionPopover.tsx, /src/index.css
+7:36:15 PM [vite] (client) page reload src/vite-env.d.ts
+7:36:16 PM [vite] (client) page reload tsconfig.app.json
+7:36:16 PM [vite] (client) page reload eslint.config.js
+7:36:17 PM [vite] (client) page reload docs/Day-1-Complete.md
+7:36:17 PM [vite] (client) hmr update /src/pages/Login.tsx, /src/index.css
+7:36:17 PM [vite] (client) page reload docs/DATABASE_SETUP.md
+7:36:17 PM [vite] (client) hmr update /src/index.css
+7:36:17 PM [vite] (client) page reload supabase/config.toml
+7:36:18 PM [vite] (client) hmr update /src/contexts/AuthContext.tsx, /src/index.css
+7:36:18 PM [vite] (client) hmr update /src/pages/Dashboard.tsx, /src/index.css
+7:36:18 PM [vite] (client) page reload supabase/seed.sql
+7:36:18 PM [vite] (client) page reload src/main.tsx
+7:36:18 PM [vite] (client) page reload SURPRISES.md
+7:36:18 PM [vite] (client) hmr update /src/index.css, /src/editor/Editor.tsx
+7:36:18 PM [vite] (client) page reload docs/Day-3-Complete.md
+7:36:18 PM [vite] (client) page reload .env.example
+7:36:19 PM [vite] (client) page reload postcss.config.js
+7:36:19 PM [vite] (client) hmr update /src/index.css, /src/editor/Editor.css
+7:36:19 PM [vite] (client) page reload src/types/database.ts
+7:36:19 PM [vite] (client) page reload tailwind.config.js
+7:36:19 PM [vite] (client) page reload supabase/.branches/_current_branch
+7:36:19 PM [vite] (client) page reload SUPRISES-CURSOR.md
+7:36:19 PM [vite] (client) page reload .cursorrules
+7:36:19 PM [vite] (client) page reload docs/LOCAL_DEVELOPMENT.md
+7:36:19 PM [vite] (client) page reload supabase/functions/grammar_check/index.ts
+7:36:19 PM [vite] (client) page reload docs/Day-4-Complete.md
+7:36:19 PM [vite] .env changed, restarting server...
+7:36:19 PM [vite] (client) hmr update /src/index.css, /src/editor/Editor.tsx
+7:36:19 PM [vite] (client) page reload docs/HYBRID_DATABASE_SETUP_GUIDE.md
+7:36:19 PM [vite] (client) hmr update /src/components/ReadabilityMeter.tsx, /src/index.css
+7:36:19 PM [vite] (client) page reload docs/Day-2-Complete.md
+7:36:19 PM [vite] .env.local changed, restarting server...
+7:36:19 PM [vite] (client) page reload .specstory/history/2025-06-16_17-39-are-github-tools-enabled.md
+7:36:19 PM [vite] (client) hmr update /src/editor/Editor.tsx, /src/index.css
+7:36:19 PM [vite] (client) hmr update /src/contexts/AuthContext.tsx, /src/index.css, /src/pages/Dashboard.tsx, /src/pages/EditorPage.tsx, /src/editor/Editor.tsx
+7:36:20 PM [vite] (client) page reload scripts/setup-local-dev.sh
+7:36:20 PM [vite] (client) page reload .specstory/history/2025-06-16_18-02-review-docs-and-create-a-plan.md
+7:36:20 PM [vite] (client) page reload docs/REMOTE_TEST_USERS.sql
+7:36:20 PM [vite] (client) page reload .github/workflows/deploy.yml
+7:36:20 PM [vite] (client) page reload docs/OAUTH_SETUP.md
+7:36:20 PM [vite] (client) page reload .cursorindexingignore
+7:36:20 PM [vite] (client) page reload CURSOR_COMMENTS.md
+7:36:20 PM [vite] (client) hmr update /src/pages/EditorPage.tsx, /src/index.css, /src/editor/Editor.tsx
+7:36:20 PM [vite] (client) page reload DOCUMENTATION.md
+7:36:21 PM [vite] (client) page reload docs/TESTING_GUIDE.md
+7:36:21 PM [vite] (client) hmr update /src/index.css
+7:36:21 PM [vite] (client) page reload docs/Day-5-Complete.md
+7:36:21 PM [vite] (client) hmr update /src/App.tsx, /src/index.css
+7:36:21 PM [vite] vite.config.ts changed, restarting server...
+7:36:21 PM [vite] (client) page reload supabase/migrations/20250616000002_fix_rls_policies.sql
+7:36:21 PM [vite] (client) page reload CLAUDE.md
+7:36:21 PM [vite] (client) page reload .specstory/history/2025-06-16_17-17-review-docs-and-create-a-plan.md
+7:36:21 PM [vite] (client) page reload supabase/migrations/20250616000001_initial_schema.sql
+7:36:21 PM [vite] (client) hmr update /src/index.css, /src/editor/Editor.tsx
+7:36:21 PM [vite] (client) page reload package.json
+7:36:21 PM [vite] (client) hmr update /src/index.css
+7:36:21 PM [vite] (client) hmr update /src/pages/Dashboard.tsx, /src/index.css, /src/pages/EditorPage.tsx
+7:36:21 PM [vite] (client) page reload .claude/settings.local.json
+7:36:21 PM [vite] (client) hmr update /src/index.css
+7:36:21 PM [vite] (client) page reload index.html
+7:36:21 PM [vite] (client) page reload README.md
+7:36:21 PM [vite] (client) page reload .prettierrc
+7:36:22 PM [vite] (client) page reload supabase/inspect_database.sql
+7:36:22 PM [vite] (client) page reload supabase/functions/readability/index.ts
+✘ [ERROR] Unexpected end of file in JSON
+
+    tsconfig.json:1:0:
+      1 │ 
+        ╵ ^
+
+failed to load config from /Users/alchang/Documents/CursorProjects/gaunlet/vite.config.ts
+7:36:25 PM [vite] Build failed with 1 error:
+tsconfig.json:1:0: ERROR: Unexpected end of file in JSON
+7:36:25 PM [vite] server restart failed
+7:36:43 PM [vite] (client) page reload .cursorindexingignore
+7:36:44 PM [vite] (client) page reload .cursorindexingignore
+7:36:58 PM [vite] (client) page reload .cursorindexingignore
+7:37:01 PM [vite] (client) hmr update /src/pages/EditorPage.tsx, /src/index.css
+7:37:01 PM [vite] (client) page reload .cursorindexingignore
+7:37:02 PM [vite] (client) hmr update /src/components/SuggestionPopover.tsx, /src/index.css
+7:37:04 PM [vite] (client) page reload src/vite-env.d.ts
+7:37:11 PM [vite] (client) page reload eslint.config.js
+7:37:13 PM [vite] (client) page reload CONVERSATION.md
+7:37:14 PM [vite] (client) page reload tsconfig.app.json
+7:37:14 PM [vite] changed tsconfig file detected: /Users/alchang/Documents/CursorProjects/gaunlet/tsconfig.json - Clearing cache and forcing full-reload to ensure TypeScript is compiled with updated config values.
+7:37:14 PM [vite] (client) page reload tsconfig.json
+7:37:15 PM [vite] (client) page reload tsconfig.node.json
+7:40:39 PM [vite] changed tsconfig file detected: /Users/alchang/Documents/CursorProjects/gaunlet/tsconfig.json - Clearing cache and forcing full-reload to ensure TypeScript is compiled with updated config values.
+7:40:39 PM [vite] (client) hmr update /src/pages/EditorPage.tsx, /src/index.css
+7:40:39 PM [vite] (client) page reload tsconfig.node.json
+7:40:39 PM [vite] (client) page reload .cursorindexingignore
+7:40:39 PM [vite] (client) page reload tsconfig.json
+7:40:39 PM [vite] (client) page reload CONVERSATION.md
+7:40:39 PM [vite] (client) hmr update /src/components/SuggestionPopover.tsx, /src/index.css
+7:40:39 PM [vite] (client) page reload src/vite-env.d.ts
+7:40:39 PM [vite] (client) page reload tsconfig.app.json
+7:40:39 PM [vite] (client) page reload eslint.config.js
+7:40:42 PM [vite] (client) page reload tsconfig.app.json
+7:40:42 PM [vite] (client) page reload .cursorindexingignore
+7:40:49 PM [vite] changed tsconfig file detected: /Users/alchang/Documents/CursorProjects/gaunlet/tsconfig.json - Clearing cache and forcing full-reload to ensure TypeScript is compiled with updated config values.
+7:40:49 PM [vite] (client) page reload tsconfig.json
+7:40:49 PM [vite] (client) hmr update /src/pages/EditorPage.tsx, /src/index.css
+7:40:49 PM [vite] (client) page reload CONVERSATION.md
+7:40:51 PM [vite] (client) page reload src/vite-env.d.ts
+7:40:51 PM [vite] (client) page reload .github/workflows/ci.yml
+7:40:52 PM [vite] (client) hmr update /src/components/SuggestionPopover.tsx, /src/index.css
+7:40:53 PM [vite] (client) page reload tsconfig.node.json
+7:40:53 PM [vite] (client) page reload eslint.config.js
+7:51:27 PM [vite] (client) page reload .claude/settings.local.json
+7:51:27 PM [vite] (client) page reload .claude/settings.local.json
+7:51:28 PM [vite] (client) page reload .claude/settings.local.json
+7:51:28 PM [vite] (client) page reload .claude/settings.local.json
+8:17:08 PM [vite] changed tsconfig file detected: /Users/alchang/Documents/CursorProjects/gaunlet/tsconfig.json - Clearing cache and forcing full-reload to ensure TypeScript is compiled with updated config values.
+8:17:08 PM [vite] (client) hmr update /src/pages/EditorPage.tsx, /src/index.css
+8:17:08 PM [vite] (client) page reload tsconfig.node.json
+8:17:08 PM [vite] (client) page reload .github/workflows/ci.yml
+8:17:08 PM [vite] (client) page reload .cursorindexingignore
+8:17:08 PM [vite] (client) page reload tsconfig.json
+8:17:08 PM [vite] (client) page reload CONVERSATION.md
+8:17:08 PM [vite] (client) hmr update /src/components/SuggestionPopover.tsx, /src/index.css
+8:17:08 PM [vite] (client) page reload src/vite-env.d.ts
+8:17:08 PM [vite] (client) page reload tsconfig.app.json
+8:17:08 PM [vite] (client) page reload eslint.config.js
+8:17:08 PM [vite] (client) page reload .claude/settings.local.json
+8:18:43 PM [vite] (client) page reload .cursorindexingignore
+8:20:42 PM [vite] changed tsconfig file detected: /Users/alchang/Documents/CursorProjects/gaunlet/tsconfig.json - Clearing cache and forcing full-reload to ensure TypeScript is compiled with updated config values.
+8:20:42 PM [vite] (client) page reload tsconfig.json
+8:20:43 PM [vite] (client) hmr update /src/pages/EditorPage.tsx, /src/index.css
+8:20:43 PM [vite] (client) page reload .github/workflows/ci.yml
+8:20:43 PM [vite] (client) page reload src/vite-env.d.ts
+8:20:44 PM [vite] (client) hmr update /src/components/SuggestionPopover.tsx, /src/index.css
+8:20:45 PM [vite] (client) page reload CONVERSATION.md
+8:20:45 PM [vite] (client) page reload tsconfig.app.json
+8:20:45 PM [vite] (client) page reload eslint.config.js
+8:20:46 PM [vite] (client) page reload eslint.config.js
+8:20:46 PM [vite] (client) page reload tsconfig.node.json
+8:25:44 PM [vite] (client) page reload DOCUMENTATION.md
+8:25:44 PM [vite] (client) hmr update /src/pages/Dashboard.tsx, /src/index.css, /src/pages/EditorPage.tsx
+8:25:45 PM [vite] (client) page reload .prettierrc
+8:25:45 PM [vite] (client) hmr update /src/editor/Editor.tsx, /src/index.css
+8:25:45 PM [vite] (client) page reload .github/workflows/deploy.yml
+8:25:45 PM [vite] (client) hmr update /src/index.css, /src/editor/Editor.css
+8:25:46 PM [vite] (client) page reload scripts/setup-local-dev.sh
+8:25:46 PM [vite] (client) hmr update /src/pages/Dashboard.tsx, /src/index.css
+8:25:46 PM [vite] (client) page reload package.json
+8:25:47 PM [vite] (client) hmr update /src/pages/Login.tsx, /src/index.css
+8:25:47 PM [vite] (client) page reload README.md
+8:25:48 PM [vite] (client) hmr update /src/contexts/AuthContext.tsx, /src/index.css, /src/pages/Dashboard.tsx, /src/pages/EditorPage.tsx, /src/editor/Editor.tsx
+8:25:48 PM [vite] (client) page reload supabase/config.toml
+8:25:49 PM [vite] (client) hmr update /src/pages/EditorPage.tsx, /src/index.css, /src/editor/Editor.tsx
+8:25:49 PM [vite] (client) page reload supabase/functions/grammar_check/index.ts
+8:25:49 PM [vite] (client) hmr update /src/index.css, /src/editor/Editor.tsx
+8:25:50 PM [vite] (client) page reload supabase/.branches/_current_branch
+8:25:50 PM [vite] (client) hmr update /src/index.css, /src/editor/Editor.tsx
+8:25:51 PM [vite] (client) page reload supabase/inspect_database.sql
+8:25:51 PM [vite] (client) hmr update /src/components/ReadabilityMeter.tsx, /src/index.css
+8:25:51 PM [vite] (client) page reload supabase/seed.sql
+8:25:52 PM [vite] (client) hmr update /src/index.css
+8:25:53 PM [vite] (client) page reload supabase/migrations/20250616000001_initial_schema.sql
+8:25:53 PM [vite] (client) hmr update /src/index.css, /src/editor/Editor.tsx
+8:25:53 PM [vite] (client) page reload supabase/migrations/20250616000002_fix_rls_policies.sql
+8:25:54 PM [vite] (client) hmr update /src/index.css
+8:25:54 PM [vite] (client) page reload .cursorrules
+8:25:54 PM [vite] (client) hmr update /src/contexts/AuthContext.tsx, /src/index.css
+8:25:55 PM [vite] (client) page reload docs/Day-4-Complete.md
+8:25:55 PM [vite] (client) page reload src/types/database.ts
+8:25:56 PM [vite] (client) page reload docs/LOCAL_DEVELOPMENT.md
+8:25:56 PM [vite] (client) page reload src/main.tsx
+8:25:57 PM [vite] (client) page reload docs/DATABASE_SETUP.md
+8:25:57 PM [vite] (client) hmr update /src/App.tsx, /src/index.css
+8:25:58 PM [vite] (client) page reload docs/Day-1-Complete.md
+8:25:58 PM [vite] (client) page reload CLAUDE.md
+8:25:58 PM [vite] (client) page reload CLAUDE.md
+8:25:59 PM [vite] (client) page reload docs/Day-2-Complete.md
+8:25:59 PM [vite] (client) page reload postcss.config.js
+8:26:00 PM [vite] (client) page reload docs/OAUTH_SETUP.md
+8:26:00 PM [vite] (client) page reload CURSOR_COMMENTS.md
+8:26:00 PM [vite] (client) page reload docs/TESTING_GUIDE.md
+8:26:01 PM [vite] vite.config.ts changed, restarting server...
+8:26:03 PM [vite] (client) page reload docs/Day-5-Complete.md
+8:26:03 PM [vite] (client) page reload docs/REMOTE_TEST_USERS.sql
+8:26:03 PM [vite] (client) page reload SUPRISES-CURSOR.md
+8:26:04 PM [vite] (client) page reload docs/HYBRID_DATABASE_SETUP_GUIDE.md
+8:26:04 PM [vite] (client) page reload tailwind.config.js
+8:26:05 PM [vite] (client) page reload index.html
+8:26:05 PM [vite] (client) page reload docs/Day-3-Complete.md
+8:26:05 PM [vite] .env changed, restarting server...
+8:26:05 PM [vite] (client) page reload SURPRISES.md
+8:26:05 PM [vite] .env.local changed, restarting server...
+8:26:07 PM [vite] server restarted.
+11:46:38 PM [vite] .env changed, restarting server...
+11:46:38 PM [vite] changed tsconfig file detected: /Users/alchang/Documents/CursorProjects/gaunlet/tsconfig.json - Clearing cache and forcing full-reload to ensure TypeScript is compiled with updated config values.
+11:46:38 PM [vite] (client) page reload index.html
+11:46:38 PM [vite] server restarted.
+11:46:38 PM [vite] vite.config.ts changed, restarting server...
+11:46:38 PM [vite] server restarted.
+2:50:42 PM [vite] (client) page reload supabase/migrations/20250616000002_fix_rls_policies.sql
+2:50:42 PM [vite] (client) page reload supabase/migrations/20250616000001_initial_schema.sql
+2:50:42 PM [vite] (client) page reload supabase/migrations/20250616000001_initial_schema.sql
+2:50:43 PM [vite] (client) hmr update /src/contexts/AuthContext.tsx, /src/index.css
+2:50:44 PM [vite] (client) page reload supabase/migrations/20250616000001_initial_schema.sql
+2:50:56 PM [vite] (client) page reload supabase/migrations/20250616000002_fix_rls_policies.sql
+2:52:36 PM [vite] (client) page reload docs/DATABASE_SETUP.md
+2:52:36 PM [vite] (client) page reload scripts/setup-local-dev.sh
+2:52:36 PM [vite] (client) page reload docs/Day-3-Complete.md
+2:52:36 PM [vite] (client) page reload supabase/inspect_database.sql
+2:52:36 PM [vite] (client) hmr update /src/index.css
+2:52:36 PM [vite] (client) page reload docs/LOCAL_DEVELOPMENT.md
+2:52:36 PM [vite] (client) page reload supabase/config.toml
+2:52:38 PM [vite] (client) page reload docs/OAUTH_SETUP.md
+2:52:38 PM [vite] (client) page reload docs/REMOTE_TEST_USERS.sql
+2:52:38 PM [vite] (client) hmr update /src/App.tsx, /src/index.css
+2:52:38 PM [vite] (client) page reload docs/Day-1-Complete.md
+2:52:38 PM [vite] (client) page reload docs/PRD - wordwise.md
+2:52:38 PM [vite] (client) hmr update /src/index.css
+2:52:38 PM [vite] (client) page reload docs/TESTING_GUIDE.md
+2:52:38 PM [vite] (client) page reload docs/HYBRID_DATABASE_SETUP_GUIDE.md
+2:52:38 PM [vite] (client) page reload docs/Day-4-Complete.md
+2:52:38 PM [vite] (client) page reload supabase/seed.sql
+2:52:38 PM [vite] (client) page reload docs/technical spec.txt
+2:52:38 PM [vite] (client) page reload src/vite-env.d.ts
+2:52:38 PM [vite] (client) page reload docs/Day-2-Complete.md
+2:52:38 PM [vite] (client) hmr update /src/index.css
+2:52:38 PM [vite] (client) page reload docs/Day-5-Complete.md
+2:52:38 PM [vite] (client) page reload src/main.tsx
+2:52:41 PM [vite] (client) hmr update /src/index.css, /src/pages/EditorPage.tsx, /src/editor/Editor.tsx
+2:52:41 PM [vite] (client) hmr update /src/index.css, /src/editor/Editor.tsx
+2:52:41 PM [vite] (client) hmr update /src/index.css, /src/editor/Editor.tsx
+2:52:41 PM [vite] (client) hmr update /src/index.css
+2:52:41 PM [vite] (client) page reload src/types/database.ts
+2:52:41 PM [vite] (client) hmr update /src/index.css, /src/pages/Dashboard.tsx, /src/pages/EditorPage.tsx
+2:52:41 PM [vite] (client) hmr update /src/index.css, /src/pages/Dashboard.tsx, /src/pages/EditorPage.tsx, /src/contexts/AuthContext.tsx, /src/editor/Editor.tsx
+2:52:43 PM [vite] (client) hmr update /src/pages/Login.tsx, /src/index.css
+2:52:43 PM [vite] (client) hmr update /src/components/SuggestionPopover.tsx, /src/index.css
+2:52:43 PM [vite] (client) hmr update /src/pages/Dashboard.tsx, /src/index.css
+2:52:43 PM [vite] (client) hmr update /src/components/ReadabilityMeter.tsx, /src/index.css
+2:52:43 PM [vite] (client) hmr update /src/pages/EditorPage.tsx, /src/index.css
+2:52:43 PM [vite] (client) hmr update /src/editor/Editor.tsx, /src/index.css
+2:52:43 PM [vite] (client) hmr update /src/index.css, /src/editor/Editor.css
+2:52:43 PM [vite] (client) hmr update /src/index.css, /src/editor/Editor.tsx
+2:52:43 PM [vite] (client) page reload supabase/functions/grammar_check/index.ts
+2:52:43 PM [vite] (client) page reload supabase/migrations/20250616000001_initial_schema 2.sql
+2:52:43 PM [vite] (client) page reload supabase/migrations/20250616000002_fix_rls_policies 2.sql
+2:52:43 PM [vite] (client) page reload supabase/functions/readability/index.ts
+3:16:35 PM [vite] (client) hmr update /src/editor/Editor.tsx, /src/index.css
+3:27:16 PM [vite] (client) hmr update /src/editor/Editor.tsx, /src/index.css
+3:40:20 PM [vite] (client) hmr update /src/index.css, /src/editor/Editor.tsx
+3:40:20 PM [vite] (client) page reload supabase/functions/grammar_check/index.ts
+3:40:29 PM [vite] (client) page reload src/components/SuggestionList.tsx
+5:04:56 PM [vite] (client) page reload docs/LOCAL_DEVELOPMENT.md
+5:05:00 PM [vite] (client) page reload docs/LOCAL_DEVELOPMENT.md
+5:05:05 PM [vite] (client) page reload docs/LOCAL_DEVELOPMENT.md
+5:05:20 PM [vite] (client) page reload docs/OAUTH_SETUP.md
+5:05:20 PM [vite] (client) page reload docs/OAUTH_SETUP.md
+5:05:35 PM [vite] (client) page reload scripts/setup-local-dev.sh

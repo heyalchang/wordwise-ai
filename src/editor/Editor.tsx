@@ -157,15 +157,17 @@ export function Editor({
 
   // Apply grammar highlights when suggestions change
   useEffect(() => {
-    if (!editor || !suggestions.length) return;
+    if (!editor) return;
 
-    // Clear existing highlights
+    // Clear existing highlights first
     clearHighlights();
 
-    // Apply new highlights for each suggestion
-    suggestions.forEach((suggestion) => {
-      setGrammarHighlight(suggestion.start, suggestion.end, suggestion.type);
-    });
+    // Then apply new highlights for each suggestion
+    if (suggestions.length > 0) {
+      suggestions.forEach((suggestion) => {
+        setGrammarHighlight(suggestion.start, suggestion.end, suggestion.type);
+      });
+    }
   }, [editor, suggestions, setGrammarHighlight, clearHighlights]);
 
   // Expose methods for grammar checking integration

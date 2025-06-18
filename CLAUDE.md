@@ -2,6 +2,10 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+#1 Rule:  You never go Leroy Jenkins.  That's not who you are.
+
+#2  Staff engineer mindset. Clarity over rush to be clever.
+
 ## Project Overview
 
 **WordWise AI** - An AI-powered writing assistant targeting ESL college students writing essays. This is a 7-day project to build a Grammarly clone with enhanced AI features.
@@ -33,8 +37,8 @@ All tables have Row Level Security (RLS) enabled - users can only access their o
 
 ### Edge Functions
 
-- `grammar_check.ts`: ✅ IMPLEMENTED - Calls LanguageTool API, stores suggestions
-- `readability.ts`: 🔄 PLANNED - Computes Flesch score and passive voice percentage
+- `grammar_check.ts`: ✅ IMPLEMENTED - Calls LanguageTool API, handles offset mapping, stores suggestions
+- `readability.ts`: ✅ IMPLEMENTED - Computes Flesch score and passive voice percentage
 - `export_docx.ts`: 🔄 PLANNED - Generates DOCX files with corrections applied
 
 ## Development Setup
@@ -67,26 +71,29 @@ npm run build
 **Day 2**: ✅ Auth flow (Google OAuth), database tables with RLS, dashboard page
 **Day 3**: ✅ Tiptap editor integration, document autosave, responsive layout
 **Day 4**: ✅ LanguageTool integration, real-time underlines, suggestion popovers
-**Day 5**: 🔄 Readability metrics, passive voice detection, live updates
+**Day 5**: ✅ Readability metrics, passive voice detection, live updates, critical bug fixes
 **Day 6**: 🔄 DOCX export functionality, UI polish, dark mode
 **Day 7**: 🔄 Testing, demo recording, documentation
 
-## Current Implementation Status (Day 4 Complete)
+## Current Implementation Status (Day 5 Complete)
 
 ### ✅ Completed Features
 - **Authentication System**: Google OAuth with Supabase Auth
 - **Document Management**: Create, save, load documents with real-time sync
 - **Rich Text Editor**: Tiptap integration with autosave functionality
-- **Grammar Checking**: Full LanguageTool integration with Edge Functions
-- **Real-time Suggestions**: Live grammar checking with visual highlighting
+- **Grammar Checking**: Full LanguageTool integration with Edge Functions + critical bug fixes
+- **Real-time Suggestions**: Live grammar checking with visual highlighting (accurate positioning)
 - **Interactive Corrections**: Click-to-apply suggestion popovers
-- **Database Integration**: PostgreSQL with RLS, real-time subscriptions
+- **Database Integration**: PostgreSQL with RLS, real-time subscriptions (schema corrected)
+- **Readability Analysis**: Flesch Reading Ease scores with live progress gauges
+- **Passive Voice Detection**: Real-time percentage tracking with ESL-friendly tips
+- **HTML-Text Offset Mapping**: Accurate grammar highlighting with formatted content
 
 ### 🔄 In Progress / Planned
-- **Readability Metrics**: Flesch score and passive voice detection
 - **Export Functionality**: DOCX export with applied corrections
-- **UI Enhancements**: Dark mode, mobile optimization
+- **UI Enhancements**: Dark mode, mobile optimization, caret-based popovers
 - **Advanced AI**: OpenAI integration for context-aware suggestions
+- **Polish Items**: Auth loading states, autosave flush, environment error handling
 
 ## Key Implementation Notes
 
@@ -96,11 +103,14 @@ src/
   editor/Editor.tsx          - ✅ Tiptap instance with grammar checking
   store/useDocStore.ts       - ✅ Zustand store for document state
   hooks/
-    useGrammarCheck.ts       - ✅ Real-time grammar checking hook
-    useDebounce.ts           - ✅ Debounced input handling
+    useGrammarCheck.ts       - ✅ Real-time grammar checking hook (with offset mapping)
+    useReadabilityCheck.ts   - ✅ Debounced readability analysis hook
+    useDebounce.ts           - ✅ Debounced input handling + value debouncing
   components/
     SuggestionPopover.tsx    - ✅ Grammar suggestion UI
-    ReadabilityMeter.tsx     - 🔄 PLANNED - Live readability metrics
+    ReadabilityMeter.tsx     - ✅ Live readability metrics with progress gauges
+  utils/
+    offsetMapping.ts         - ✅ HTML-to-text position mapping utilities
   pages/
     Dashboard.tsx            - ✅ Document list
     EditorPage.tsx           - ✅ Editor page with auth guard
@@ -176,12 +186,30 @@ supabase db push
 - ESLint + Prettier for formatting
 - Descriptive variable names for ESL context
 
+## Critical Bug Fixes (Day 5)
+
+### ✅ Database Schema Mismatch (RESOLVED)
+- **Issue**: Code used `start_pos`/`end_pos` but database schema used `start`/`end`
+- **Fix**: Updated all interfaces, components, and Edge Functions to use correct column names
+- **Impact**: Grammar suggestions now work instead of causing database INSERT errors
+
+### ✅ Tiptap Highlight Clearing API (RESOLVED)
+- **Issue**: `unsetHighlight()` doesn't exist in Tiptap Highlight extension
+- **Fix**: Implemented proper ProseMirror transaction-based clearing that only removes highlight marks
+- **Impact**: No more JavaScript errors, preserves user formatting (bold, italic, etc.)
+
+### ✅ HTML-to-Text Offset Mapping (RESOLVED)
+- **Issue**: LanguageTool receives plain text but offsets applied to HTML content with formatting
+- **Fix**: Created comprehensive offset mapping utilities that translate between HTML and text positions
+- **Impact**: Grammar highlights now position correctly even with bold/italic formatting
+
 ## Common Issues & Solutions
 
-1. **CORS errors with LanguageTool**: Use Edge Function proxy
-2. **Tiptap decoration performance**: Debounce grammar checks to 2000ms
-3. **RLS policies blocking access**: Check auth.uid() in policies
-4. **Readability calculation lag**: Compute client-side, not in Edge Function
+1. **CORS errors with LanguageTool**: Use Edge Function proxy ✅
+2. **Tiptap decoration performance**: Debounce grammar checks to 2000ms ✅
+3. **RLS policies blocking access**: Check auth.uid() in policies ✅
+4. **Readability calculation lag**: Compute server-side with 3s debouncing ✅
+5. **Grammar highlight offset drift**: Use HTML-to-text mapping utilities ✅
 
 ## Key Files to Check
 

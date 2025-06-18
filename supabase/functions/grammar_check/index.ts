@@ -122,8 +122,8 @@ serve(async (req) => {
 
       return {
         doc_id: docId,
-        start: htmlStart,
-        end: htmlEnd,
+        start_pos: htmlStart,
+        end_pos: htmlEnd,
         type: getSuggestionType(match.rule.category.id),
         message: match.message,
         replacements: match.replacements.map((r) => r.value),

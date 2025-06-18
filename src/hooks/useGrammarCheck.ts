@@ -1,17 +1,7 @@
 import { useCallback, useEffect } from 'react';
-import { supabase } from '../lib/supabase';
+import { supabase, type Suggestion } from '../lib/supabase';
 import { useDebounce } from './useDebounce';
 import { getEditorTextAndMapping } from '../utils/offsetMapping';
-
-interface Suggestion {
-  id: number;
-  doc_id: string;
-  start: number;
-  end: number;
-  type: string;
-  message: string;
-  replacements: string[];
-}
 
 interface GrammarCheckHookProps {
   documentId: string;
